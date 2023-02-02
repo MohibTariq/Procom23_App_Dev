@@ -2,10 +2,11 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
+  ScrollView
 } from "react-native";
 import { useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import ButtonGradient from "./ButtonGradient";
+import Input from "./Input";
 function Signup() {
   function display() {
     if(email==="" ){
@@ -24,47 +25,18 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+
     <View style={styles.container}>
       <Text style={styles.heading}>Log in</Text>
       <Text style={styles.text_display}>Enter email or phone number.</Text>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email/Contact"
-          onChangeText={(email) => setEmail(email)}
-          value={email}
-        />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-          value={password}
-        />
-      </View>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={["#3E189B", "#E100C1"]}
-        style={styles.gradient}
-      >
-        <Text style={styles.loginText}  onPress={display}>Log In</Text>
-      </LinearGradient>
+      <Input value={email} setvar={setEmail} placeholder={"Email/Contact"} secure={false}/>
+      <Input value={password} setvar={setPassword} placeholder={"Password"} secure={true}/>
+      <ButtonGradient text={"Login"} onclick={display}/>
       <Text style={styles.text_display1}>Don't have any account?</Text>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={["#3E189B", "#E100C1"]}
-        style={styles.gradient}
-      >
-        <Text style={styles.loginText} onPress={display}>
-          Sign Up
-        </Text>
-      </LinearGradient>
+    <ButtonGradient text={"Sign Up"} onclick={display}/>
     </View>
+    </ScrollView>
   );
 }
 export default Signup;
@@ -74,39 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  inputView: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-  },
-
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 10,
-    fontSize: 14,
-  },
-  gradient: {
-    width: "70%",
-    borderRadius: 10,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  loginText: {
-    color: "#fff",
-    fontSize: 16,
-    width: "100%",
-    height: "100%",
-    textAlign: "center",
-    marginTop: 20,
   },
   heading: {
     fontSize: 30,

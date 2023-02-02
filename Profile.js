@@ -2,18 +2,21 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
   Image,
+  ScrollView,
+  Button
 } from "react-native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import ButtonGradient from "./ButtonGradient";
+import Input from "./Input";
 function Profile() {
   const [name, setname] = useState("");
   const [contact, setcontact] = useState("");
   const [password, setPassword] = useState("");
   const [conf_password, setConfPassword] = useState("");
+  const [image,setImage]=useState();
   function display() {
     if (name === "") {
       alert("Enter Name ");
@@ -41,6 +44,7 @@ function Profile() {
     setConfPassword("");
   }
   return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
     <View style={styles.container}>
       <Text style={styles.heading}>Set up your Profile</Text>
       <Image source={require("./assets/icon.png")} style={styles.image} />
@@ -63,53 +67,14 @@ function Profile() {
         </LinearGradient>
       </View>
       {/* //till here  */}
-
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Full name"
-          onChangeText={(name) => setname(name)}
-          value={name}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-          value={password}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Re-enter Password"
-          secureTextEntry={true}
-          onChangeText={(conf_password) => setConfPassword(conf_password)}
-          value={conf_password}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Contact Number"
-          onChangeText={(contact) => setcontact(contact)}
-          value={contact}
-        />
-      </View>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={["#3E189B", "#E100C1"]}
-        style={styles.gradient}
-      >
-        <Text style={styles.loginText} onPress={display}>
-          Done
-        </Text>
-      </LinearGradient>
+      {/* <Button title="Select Image" onPress={pickImage} /> */}
+      <Input value={name} setvar={setname} placeholder={"Full name"} secure={false}/>
+      <Input value={password} setvar={setPassword} placeholder={"Password"} secure={true}/>
+      <Input value={conf_password} setvar={setConfPassword} placeholder={"Re-enter Password"} secure={true}/>
+      <Input value={contact} setvar={setcontact} placeholder={"Contact Number"} secure={false}/>
+      <ButtonGradient text={"Done"} onclick={display}/>
     </View>
+    </ScrollView>
   );
 }
 export default Profile;
@@ -119,20 +84,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  inputView: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-  },
-
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
   },
 
   forgot_button: {
