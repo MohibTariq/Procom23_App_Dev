@@ -7,7 +7,10 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
+  Dimensions,
+  ScrollView,
 } from "react-native";
+import Carousal from "./Slide";
 
 const onPress = () => {
   console.log("Button Pressed");
@@ -28,7 +31,9 @@ const HomeScreen = () => (
         />
         <Text style={[styles.text, { marginTop: 25 }]}> Welcome Back!</Text>
       </View>
-      <View style={styles.video}></View>
+      <View style={styles.video}>
+        <Carousal />
+      </View>
       <View
         style={{
           width: "100%",
@@ -56,6 +61,49 @@ const HomeScreen = () => (
           <Text style={styles.textBold}>4</Text>
         </View>
       </View>
+      <View style={{ alignItems: "center", marginTop: 20 }}>
+        <Text style={styles.text}>What do we offer</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            width: "100%",
+            marginTop: 20,
+          }}
+        >
+          <View style={styles.box}>
+            <ImageBackground
+              source={require("../images/23.png")}
+              resizeMode={"stretch"}
+              style={styles.image}
+            >
+              <Text
+                style={[
+                  styles.textBold,
+                  { color: "white", marginTop: "auto", textAlign: "center" },
+                ]}
+              >
+                Gaming Competitions
+              </Text>
+            </ImageBackground>
+          </View>
+          <View style={[styles.box, { marginLeft: "auto" }]}>
+            <ImageBackground
+              source={require("../images/23.png")}
+              resizeMode={"stretch"}
+              style={styles.image}
+            >
+              <Text
+                style={[
+                  styles.textBold,
+                  { color: "white", marginTop: "auto", textAlign: "center" },
+                ]}
+              >
+                Job Fair
+              </Text>
+            </ImageBackground>
+          </View>
+        </View>
+      </View>
     </ImageBackground>
   </View>
 );
@@ -73,6 +121,7 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontSize: 20,
+    fontWeight: "bold",
   },
   input: {
     backgroundColor: "white",
@@ -106,7 +155,7 @@ const styles = StyleSheet.create({
   video: {
     width: "100%",
     height: 250,
-    backgroundColor: "red",
+    backgroundColor: "purple",
   },
   durationBox: {
     height: 50,
@@ -122,6 +171,12 @@ const styles = StyleSheet.create({
   textSmall: {
     fontSize: 12,
     color: "white",
+  },
+  box: {
+    width: "40%",
+    height: 140,
+    backgroundColor: "purple",
+    borderRadius: 10,
   },
 });
 

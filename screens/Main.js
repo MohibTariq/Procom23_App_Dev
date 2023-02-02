@@ -27,64 +27,62 @@ const Tab = createBottomTabNavigator();
 
 export default function Main() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
 
-            if (route.name === "Home") {
-              iconName = focused ? "ios-home" : "ios-home-outline";
-            } else if (route.name === "Cart") {
-              iconName = focused ? "ios-cart" : "ios-cart-outline";
-            } else if (route.name === "Explore") {
-              iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
-            }
+          if (route.name === "Home") {
+            iconName = focused ? "ios-home" : "ios-home-outline";
+          } else if (route.name === "Cart") {
+            iconName = focused ? "ios-cart" : "ios-cart-outline";
+          } else if (route.name === "Explore") {
+            iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
+          }
 
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={30} color={color} />;
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={30} color={color} />;
+        },
+        tabBarActiveTintColor: "#370140",
+        tabBarInactiveTintColor: "#370140",
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        options={{
+          topBar: {
+            backButton: {},
           },
-          tabBarActiveTintColor: "#370140",
-          tabBarInactiveTintColor: "#370140",
-        })}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Explore"
-          component={Explore}
-          options={{
-            topBar: {
-              backButton: {},
-            },
-            title: "Explore",
-            headerStyle: {
-              backgroundColor: "#370140",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Cart"
-          component={Cart}
-          options={{
-            title: "Cart",
-            headerStyle: {
-              backgroundColor: "#370140",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+          title: "Explore",
+          headerStyle: {
+            backgroundColor: "#370140",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          title: "Cart",
+          headerStyle: {
+            backgroundColor: "#370140",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+    </Tab.Navigator>
   );
 }

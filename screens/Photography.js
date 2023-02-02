@@ -7,13 +7,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const Explore = () => {
+const Photography = () => {
   const navigation = useNavigation();
 
   return (
@@ -22,26 +23,39 @@ const Explore = () => {
         source={require("../images/Background-Img.png")}
         style={styles.image}
       >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("GeneralCompetitions")}
-          style={styles.button}
+        <View
+          style={{
+            padding: 20,
+            marginTop: 50,
+            width: "100%",
+          }}
         >
-          <Text style={styles.text}>General Competitions</Text>
+          <Text style={styles.heading}>Introduction</Text>
+          <Text style={styles.text}>--Enter text here --</Text>
+        </View>
+        <View
+          style={{
+            padding: 20,
+            marginTop: 50,
+            width: "100%",
+          }}
+        >
+          <Text style={styles.heading}>Eligiblity Creteria</Text>
+          <Text style={styles.text}>--Enter text here --</Text>
+        </View>
+        <View
+          style={{
+            padding: 20,
+            marginTop: 50,
+            width: "100%",
+          }}
+        >
+          <Text style={styles.heading}>Documents Required (if any)</Text>
+          <Text style={styles.text}>--Enter text here --</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
+          <Text style={styles.heading}>Register Now</Text>
         </TouchableOpacity>
-        <View style={styles.button}>
-          <Text style={styles.text}>Gaming Competitions</Text>
-        </View>
-        <View style={styles.button}>
-          <Text style={styles.text}>CS Competitions</Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <View style={styles.buttonRow}>
-            <Text style={styles.text}>EE Competitions</Text>
-          </View>
-          <View style={styles.buttonRow}>
-            <Text style={styles.text}>BBA Competitions</Text>
-          </View>
-        </View>
       </ImageBackground>
     </View>
   );
@@ -56,16 +70,19 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center",
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
+    color: "white",
+  },
+  heading: {
+    fontSize: 26,
     color: "white",
   },
   button: {
     width: "80%",
     backgroundColor: "#370140",
-    height: 100,
+    height: 60,
     alignSelf: "center",
     borderRadius: 10,
     marginTop: 30,
@@ -86,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Explore;
+export default Photography;
