@@ -22,6 +22,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import GeneralCompetitions from "./screens/GeneralCompetitions";
 import Photography from "./screens/Photography";
 import RegisteredCompetitions from "./screens/RegisteredCompetitions";
+import About from "./screens/About";
 
 const Stack = createNativeStackNavigator();
 
