@@ -21,7 +21,7 @@ function SignUp() {
 
   const [email, setEmail] = useState("");
   function display() {
-    if (email === "") {
+    if (email === "" || email === "1") {
       alert("Enter Email");
       return;
     } else {
@@ -46,13 +46,23 @@ function SignUp() {
         >
           4 digit Verification number will be sent to you!
         </Text>
-
+        {email === "" && (
+          <Text
+            style={[
+              styles.text,
+              { color: "red", fontSize: 12, marginBottom: 5 },
+            ]}
+          >
+            Enter Email!
+          </Text>
+        )}
         <Input
           value={email}
           setvar={setEmail}
           placeholder={"Email/Contact"}
           secure={false}
         />
+
         {/* <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={{ color: "white" }}>Send Code</Text>
       </TouchableOpacity> */}
