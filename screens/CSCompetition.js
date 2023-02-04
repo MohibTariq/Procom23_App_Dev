@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
+import { DarkTheme, useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const GeneralCompetitions = () => {
+const CSCompetitions = () => {
   const navigation = useNavigation();
 
   return (
@@ -32,13 +32,28 @@ const GeneralCompetitions = () => {
           }}
         >
           <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Futsal Tournament
-            </Text>
+            <Text style={[styles.text, { width: "90%" }]}>Hackathon</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Futsal Tournament",
+                  name: "Hackathon",
+                })
+              }
+            >
+              <Ionicons
+                style={{ alignSelf: "center" }}
+                size={30}
+                color="white"
+                name="eye"
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
+            <Text style={[styles.text, { width: "90%" }]}>Database Design</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Competition", {
+                  name: "Database Design",
                 })
               }
             >
@@ -52,12 +67,12 @@ const GeneralCompetitions = () => {
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
             <Text style={[styles.text, { width: "90%" }]}>
-              Painting and Sketching
+              Capture the flag
             </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Painting and Sketching",
+                  name: "Capture the flag",
                 })
               }
             >
@@ -71,12 +86,46 @@ const GeneralCompetitions = () => {
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
             <Text style={[styles.text, { width: "90%" }]}>
-              Reels Competition
+              Game Development
             </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Reels Competition",
+                  name: "Game Development",
+                })
+              }
+            >
+              <Ionicons
+                style={{ alignSelf: "center" }}
+                size={30}
+                color="white"
+                name="eye"
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
+            <Text style={[styles.text, { width: "90%" }]}>Data Science</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Competition", {
+                  name: "Data Science ",
+                })
+              }
+            >
+              <Ionicons
+                style={{ alignSelf: "center" }}
+                size={30}
+                color="white"
+                name="eye"
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
+            <Text style={[styles.text, { width: "90%" }]}>Speed Debugging</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Competition", {
+                  name: "Speed Debugging",
                 })
               }
             >
@@ -90,12 +139,12 @@ const GeneralCompetitions = () => {
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
             <Text style={[styles.text, { width: "90%" }]}>
-              Taboo Competition
+              Speed Programming
             </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Taboo Competition",
+                  name: "Speed Programming",
                 })
               }
             >
@@ -109,12 +158,12 @@ const GeneralCompetitions = () => {
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
             <Text style={[styles.text, { width: "90%" }]}>
-              Chess Competition
+              Code In the Dark
             </Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Chess Competition",
+                  name: "Code In the Dark",
                 })
               }
             >
@@ -127,11 +176,11 @@ const GeneralCompetitions = () => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Photography</Text>
+            <Text style={[styles.text, { width: "90%" }]}>Blockchain</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Photography",
+                  name: "Blockchain",
                 })
               }
             >
@@ -144,11 +193,11 @@ const GeneralCompetitions = () => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Eat All You Can</Text>
+            <Text style={[styles.text, { width: "90%" }]}>UI/UX Design</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Eat All You Can",
+                  name: "UI/UX Design",
                 })
               }
             >
@@ -161,11 +210,11 @@ const GeneralCompetitions = () => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Human Ludo</Text>
+            <Text style={[styles.text, { width: "90%" }]}>App Development</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Human Ludo",
+                  name: "App Development",
                 })
               }
             >
@@ -178,11 +227,11 @@ const GeneralCompetitions = () => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>IQuest</Text>
+            <Text style={[styles.text, { width: "90%" }]}>Web Development</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "IQuest",
+                  name: "Web Development",
                 })
               }
             >
@@ -195,30 +244,11 @@ const GeneralCompetitions = () => {
             </TouchableOpacity>
           </View>
           <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Math Olympiad</Text>
+            <Text style={[styles.text, { width: "90%" }]}>PseudoWars</Text>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Competition", {
-                  name: "Math Olympiad",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Intraparlimentary Debate
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Intraparlimentary Debate ",
+                  name: "PseudoWars",
                 })
               }
             >
@@ -274,4 +304,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GeneralCompetitions;
+export default CSCompetitions;

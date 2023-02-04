@@ -30,14 +30,23 @@ const Explore = () => {
           >
             <Text style={styles.text}>General Competitions</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("GamingCompetitions")}
+          >
             <Text style={styles.text}>Gaming Competitions</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("CSCompetitions")}
+          >
             <Text style={styles.text}>CS Competitions</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
-            <TouchableOpacity style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.buttonRow}
+              onPress={() => navigation.navigate("EECompetitions")}
+            >
               <Text style={styles.text}>EE Competitions</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonRow}>

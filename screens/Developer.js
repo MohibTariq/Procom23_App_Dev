@@ -1,16 +1,13 @@
-import { ImageBackground } from "react-native";
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
-  Image,
+  ImageBackground,
   ScrollView,
 } from "react-native";
 import Card from "./Card";
 import Header from "./Header";
-function About(props) {
+function Developer(props) {
   return (
     <ImageBackground
       style={{ flex: 1 }}
@@ -20,21 +17,37 @@ function About(props) {
         contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
       >
         <View style={styles.container}>
+          <Text style={styles.text_heading}>The Developers Team</Text>
           <Text style={styles.text_display1}>
             Qui amet aliqua pariatur ea labore Lorem id duis esse ipsum sit eu
             nostrud culpa. Ut laboris aliqua incididunt sint Lorem deserunt
             cupidatat sint aliquip qui minim sint laboris. Ad non dolore officia
             nostrud eu aute velit non in nostrud deserunt irure ex.
           </Text>
-          <Text style={styles.text_heading}>Our Team</Text>
+          <Text style={styles.text_heading}>Our Development Team</Text>
           <Card
-            name={"Rohaan Khan"}
-            title={"President"}
+            name={"Moasddsa"}
+            title={"Head"}
             //   image={require("./assets/user.jpg")}
           />
           <Card
-            name={"Zoha Mobin"}
-            title={"Vice President"}
+            name={"ransdsad"}
+            title={"Head"}
+            //   image={require("./assets/user.jpg")}
+          />
+          <Card
+            name={"Madsdsad"}
+            title={"Head"}
+            //   image={require("./assets/user.jpg")}
+          />
+          <Card
+            name={"Madssa asdsa"}
+            title={"Head"}
+            //   image={require("./assets/user.jpg")}
+          />
+          <Card
+            name={"Masdsad"}
+            title={"Head"}
             //   image={require("./assets/user.jpg")}
           />
         </View>
@@ -42,7 +55,7 @@ function About(props) {
     </ImageBackground>
   );
 }
-export default About;
+export default Developer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

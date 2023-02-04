@@ -1,4 +1,5 @@
-import React from "react";
+import { useState } from "react";
+import { InputAccessoryView } from "react-native";
 import {
   ImageBackground,
   StyleSheet,
@@ -7,32 +8,61 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import ButtonGradient from "./ButtonGradient";
+import Input from "./Input";
+import { useNavigation } from "@react-navigation/native";
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const SignUp = () => (
-  <View style={styles.container}>
-    <ImageBackground
-      source={require("../images/Background-Img.png")}
-      style={styles.image}
-    >
-      <Text style={styles.text}>Sign Up</Text>
-      <Text style={[styles.text, { fontSize: 20, marginTop: 20 }]}>
-        Enter Email or Phone Number
-      </Text>
-      <Text style={[styles.text, { fontSize: 16, marginTop: 20 }]}>
-        4 digit Verification number will be sent to you!
-      </Text>
+function SignUp() {
+  const navigation = useNavigation();
 
-      <TextInput style={styles.input} placeholder=" Email/Contact" />
-      <TouchableOpacity style={styles.button} onPress={onPress}>
+  const [email, setEmail] = useState("");
+  function display() {
+    if (email === "") {
+      alert("Enter Email");
+      return;
+    } else {
+      navigation.navigate("Verification");
+    }
+  }
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../images/Background-Img.png")}
+        style={styles.image}
+      >
+        <Text style={styles.text}>Sign Up</Text>
+        <Text style={[styles.text, { fontSize: 20, marginTop: 20 }]}>
+          Enter Email or Phone Number
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            { fontSize: 16, marginTop: 20, marginBottom: 30 },
+          ]}
+        >
+          4 digit Verification number will be sent to you!
+        </Text>
+
+        <Input
+          value={email}
+          setvar={setEmail}
+          placeholder={"Email/Contact"}
+          secure={false}
+        />
+        {/* <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={{ color: "white" }}>Send Code</Text>
-      </TouchableOpacity>
-    </ImageBackground>
-  </View>
-);
+      </TouchableOpacity> */}
+        <TouchableOpacity style={{ width: "100%" }} onPress={display}>
+          <ButtonGradient text={"SignUp"} />
+        </TouchableOpacity>
+      </ImageBackground>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +87,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     padding: 10,
+    marginBottom: 40,
   },
   button: {
     alignItems: "center",

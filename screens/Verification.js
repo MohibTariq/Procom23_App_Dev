@@ -9,84 +9,96 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const Verification = () => (
-  <View style={styles.container}>
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
-      keyboardShouldPersistTaps="handled"
-    >
-      <ImageBackground
-        source={require("../images/Background-Img.png")}
-        style={styles.image}
+function Verification() {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.text}>Verification</Text>
-
-        <View
-          style={{ flexDirection: "row", marginLeft: 10, alignSelf: "center" }}
+        <ImageBackground
+          source={require("../images/Background-Img.png")}
+          style={styles.image}
         >
-          <Text style={[styles.text, { fontSize: 16, marginTop: 20 }]}>
-            Code sent to
-          </Text>
-          <Text
-            style={[
-              styles.text,
-              { fontSize: 16, marginTop: 20, color: "grey" },
-            ]}
+          <Text style={styles.text}>Verification</Text>
+
+          <View
+            style={{
+              flexDirection: "row",
+              marginLeft: 10,
+              alignSelf: "center",
+            }}
           >
-            {" "}
-            mirsaad11@hotmail.com
+            <Text style={[styles.text, { fontSize: 16, marginTop: 20 }]}>
+              Code sent to
+            </Text>
+            <Text
+              style={[
+                styles.text,
+                { fontSize: 16, marginTop: 20, color: "grey" },
+              ]}
+            >
+              {" "}
+              mirsaad11@hotmail.com
+            </Text>
+          </View>
+
+          <View style={{ flexDirection: "row", alignSelf: "center" }}>
+            <TextInput
+              style={styles.input}
+              placeholder=""
+              maxLength={1}
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder=""
+              maxLength={1}
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder=""
+              maxLength={1}
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder=""
+              maxLength={1}
+              keyboardType="numeric"
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <Text style={{ color: "white" }}>Verify</Text>
+          </TouchableOpacity>
+
+          <Text style={[styles.text, { fontSize: 16, marginTop: 20 }]}>
+            Didn't receive a code?
           </Text>
-        </View>
-
-        <View style={{ flexDirection: "row", alignSelf: "center" }}>
-          <TextInput
-            style={styles.input}
-            placeholder=""
-            maxLength={1}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder=""
-            maxLength={1}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder=""
-            maxLength={1}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder=""
-            maxLength={1}
-            keyboardType="numeric"
-          />
-        </View>
-
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={{ color: "white" }}>Verify</Text>
-        </TouchableOpacity>
-
-        <Text style={[styles.text, { fontSize: 16, marginTop: 20 }]}>
-          Didn't receive a code?
-        </Text>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: "white", marginTop: 10 }]}
-          onPress={onPress}
-        >
-          <Text style={{ color: "#370140" }}>Resend Code</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-    </ScrollView>
-  </View>
-);
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: "white", marginTop: 10 }]}
+            onPress={onPress}
+          >
+            <Text style={{ color: "#370140" }}>Resend Code</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+      </ScrollView>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
