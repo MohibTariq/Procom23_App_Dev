@@ -9,10 +9,10 @@ import {
   import { useState } from "react";
   import { LinearGradient } from "expo-linear-gradient";
   import Icon from "react-native-vector-icons/MaterialIcons";
-import Main from "./Main";
-import Header from "./Header";
-import ButtonGradient from "./ButtonGradient";
-import Input from "./Input";
+import Main from "../Main";
+import Header from "../Header";
+import ButtonGradient from "../ButtonGradient";
+import Input from "../Input";
 
   function Register(props) {
     function display() {

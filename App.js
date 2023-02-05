@@ -1,23 +1,12 @@
 import { StyleSheet, Text, View ,TextInput,ImageBackground,SafeAreaView,StatusBar, ScrollView } from 'react-native';
-import About from './About';
-import Competition from './Competition';
-import Developer from './Developer';
-import Profile from './Profile';
-import Register from './Register';
-import Signup from './Signup';
-import Update from './Update';
+import StackNavigator from './navigation/StackNavigation';
+
 export default function App() {
   return (
   <SafeAreaView style={styles.AndroidSafeArea}>
  
     <ImageBackground source={require('./img.jpg')} resizeMode="cover" style={styles.image}>
-      {/* <Signup /> */}
-      {/* <Profile /> */}
-      {/* <Update /> */}
-      {/* <Register  name={"Photography"}/> */}
-      {/* <Competition name={"Photography"}/> */}
-      {/* <About /> */}
-     <Developer />
+      <StackNavigator />
     </ImageBackground>
   
   </SafeAreaView>

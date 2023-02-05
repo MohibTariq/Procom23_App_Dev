@@ -11,9 +11,9 @@ import {
   import { useState } from "react";
   import { LinearGradient } from "expo-linear-gradient";
   import Icon from "react-native-vector-icons/MaterialIcons";
-import ButtonGradient from "./ButtonGradient";
-import Input from "./Input";
-import Header from "./Header";
+import ButtonGradient from "../ButtonGradient";
+import Input from "../Input";
+import Header from "../Header";
   function Update() {
     const [name, setname] = useState("");
     const [contact, setcontact] = useState("");
@@ -35,7 +35,7 @@ import Header from "./Header";
         <Header />
       <View style={styles.container}>
         <Text style={styles.heading}>Update Profile</Text>
-        <Image source={require("./assets/icon.png")} style={styles.image} />
+        <Image source={require("../assets/icon.png")} style={styles.image} />
         {/* //disable this section if camera icon isn't needed */}
         <View
           style={{ width: 33, height: 30, top: -40, left: 33, borderRadius: 50 }}>

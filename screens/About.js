@@ -7,48 +7,36 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import ButtonGradient from "./ButtonGradient";
-import Header from "./Header";
-
-function Competition(props) {
-  const data = require("./assets/Photography.json");
-  console.log(data);
+import Card from "../Card";
+import Header from "../Header";
+function About(props) {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
-    <Header />
-      <LinearGradient
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          colors={["#3E189B", "#E100C1"]}
-          style={styles.gradient1}
-        >
-          <Text style={styles.btntext}>{props.name}</Text>
-        </LinearGradient>
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+    >
+      <Header />
       <View style={styles.container}>
-        <Text style={styles.text_heading}>Introduction</Text>
-        <Text style={styles.text_display1}>{data.intro}</Text>
-        <Text style={styles.text_heading}>Eligibility Criteria</Text>
-        <Text style={styles.text_display1}>{data.eligibility}</Text>
-
-        <Text style={styles.text_heading}>Documents Required (if any)</Text>
-        <Text style={styles.text_display1}>{data.documents}</Text>
-        <ButtonGradient text={"Register Now"}/>
+        <Text style={styles.text_heading}>About Us</Text>
+        <Text style={styles.text_display1}>
+          Qui amet aliqua pariatur ea labore Lorem id duis esse ipsum sit eu
+          nostrud culpa. Ut laboris aliqua incididunt sint Lorem deserunt
+          cupidatat sint aliquip qui minim sint laboris. Ad non dolore officia
+          nostrud eu aute velit non in nostrud deserunt irure ex.
+        </Text>
+        <Text style={styles.text_heading}>Our Team</Text>
+        <Card name={"Rohaan Khan"} title={"President"} image={require("../assets/user.jpg")}/>
+        <Card name={"Zoha Mobin"} title={"Vice President"} image={require("../assets/user.jpg")}/>
       </View>
     </ScrollView>
   );
 }
-export default Competition;
-
+export default About;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-
   loginBtn: {
     width: "70%",
     borderRadius: 10,
@@ -76,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
-  
+
   text_display1: {
     fontSize: 16,
     margin: 5,
@@ -89,6 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
     width: "90%",
+    textAlign: "center",
   },
   headerContainer: {
     height: 60,
@@ -97,31 +86,36 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
-    
   },
   btntext: {
     color: "#fff",
     fontSize: 20,
-    fontWeight:"bold",
+    fontWeight: "bold",
     width: "100%",
     height: "100%",
     textAlign: "center",
     marginTop: 20,
-    flex:1,
+    flex: 1,
     // alignSelf:"center",
-    alignItems:"center"
+    alignItems: "center",
   },
   gradient1: {
     width: "80%",
     // borderRadius: 10,
     // borderBottomEndRadius:25,
     // borderTopStartRadius:25,
-    borderTopEndRadius:15,
-    borderBottomStartRadius:15,
+    borderTopEndRadius: 15,
+    borderBottomStartRadius: 15,
     height: 70,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 10,
     marginBottom: 20,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    marginBottom: 10,
+    borderRadius: 50,
   },
 });

@@ -7,8 +7,8 @@ import {
     Image,
     ScrollView,
   } from "react-native";
-  import Card from "./Card";
-  import Header from "./Header";
+  import Card from "../Card";
+  import Header from "../Header";
   function Developer(props) {
     return (
       <ScrollView
@@ -24,11 +24,11 @@ import {
             nostrud eu aute velit non in nostrud deserunt irure ex.
           </Text>
           <Text style={styles.text_heading}>Our Development Team</Text>
-          <Card name={"Moasddsa"} title={"Head"} image={require("./assets/user.jpg")}/>
-          <Card name={"ransdsad"} title={"Head"} image={require("./assets/user.jpg")}/>
-          <Card name={"Madsdsad"} title={"Head"} image={require("./assets/user.jpg")}/>
-          <Card name={"Madssa asdsa"} title={"Head"} image={require("./assets/user.jpg")}/>
-          <Card name={"Masdsad"} title={"Head"} image={require("./assets/user.jpg")}/>
+          <Card name={"Moasddsa"} title={"Head"} image={require("../assets/user.jpg")}/>
+          <Card name={"ransdsad"} title={"Head"} image={require("../assets/user.jpg")}/>
+          <Card name={"Madsdsad"} title={"Head"} image={require("../assets/user.jpg")}/>
+          <Card name={"Madssa asdsa"} title={"Head"} image={require("../assets/user.jpg")}/>
+          <Card name={"Masdsad"} title={"Head"} image={require("../assets/user.jpg")}/>
 
         </View>
       </ScrollView>
