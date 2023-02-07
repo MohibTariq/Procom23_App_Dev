@@ -1,0 +1,6 @@
+expo-cli start --tunnel
+Add scrollview
+
+Remove header
+Send props in competetion screen
+Install native base for Payment
