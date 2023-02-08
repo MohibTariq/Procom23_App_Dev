@@ -13,13 +13,13 @@ import Main from "./Main";
 import Header from "./Header";
 import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
-import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
 
-function Register(props) {
-  const navigation = useNavigation();
+function Register({navigation, route}) {
+  const {comp} = route.params;
+
   const addToCart = () =>
-    Alert.alert("Addted to Cart", "My Alert Msg", [
+    Alert.alert("Added to Cart", "My Alert Msg", [
       {
         text: "Ask me later",
         onPress: () => console.log("Ask me later pressed"),
@@ -31,47 +31,27 @@ function Register(props) {
       },
       { text: "OK", onPress: () => console.log("OK Pressed") },
     ]);
-  function display() {
+
+  function submit() {
     if (field === "") {
-      alert("Enter Field");
+      alert("Enter Lead's Email");
       return;
     }
     if (teamName === "") {
       alert("Enter Team Name");
       return;
     }
-    if (no === "") {
-      alert("Enter Number of participants");
+    if (no === "" || no > comp.maxparticipants) {
+      alert("Invalid number of participants");
       return;
     }
-    if (
-      (no === "1" && first === "") ||
-      (no === "2" && (first === "" || second === "")) ||
-      (no === "3" && (first === "" || second === "" || third === ""))
-    ) {
-      alert("Kindly enter your team members name");
-      return;
-    }
-    const object = {
-      Field: field,
-      Team: teamName,
-      Number: no,
-      Mem1: first,
-      Mem2: second,
-      Mem3: third,
-    };
-    console.log(object);
+
+    // api call
+    
+
     setfield("");
     setteamname("");
     setno("");
-    setfirst("");
-    setsecond("");
-    setthird("");
-    setobj({
-      first: true,
-      second: true,
-      third: true,
-    });
   }
   function check(num) {
     if (num > "3" || (num < "1" && num !== "")) {
@@ -104,14 +84,6 @@ function Register(props) {
   const [field, setfield] = useState("");
   const [teamName, setteamname] = useState("");
   const [no, setno] = useState("");
-  const [obj, setobj] = useState({
-    first: true,
-    second: true,
-    third: true,
-  });
-  const [first, setfirst] = useState("");
-  const [second, setsecond] = useState("");
-  const [third, setthird] = useState("");
 
   return (
     <ImageBackground
@@ -126,7 +98,7 @@ function Register(props) {
           <Input
             value={field}
             setvar={setfield}
-            placeholder="Field"
+            placeholder="Lead's Email"
             secure={false}
           />
           <Input
@@ -135,49 +107,18 @@ function Register(props) {
             placeholder="Team Name"
             secure={false}
           />
-          {/* <View style={styles.inputView}>
-            <Input
+           <Input
               style={styles.TextInput}
               keyboardType="numeric"
               placeholder="Number of Participants"
-              onChangeText={(num) => check(num)}
+              setvar={setno}
               value={no}
             />
-          </View> */}
-          {obj.first ? (
-            <Input
-              value={first}
-              setvar={setfirst}
-              placeholder="Member 1"
-              secure={false}
-            />
-          ) : (
-            <></>
-          )}
-          {obj.second ? (
-            <Input
-              value={second}
-              setvar={setsecond}
-              placeholder="Member 2"
-              secure={false}
-            />
-          ) : (
-            <></>
-          )}
-          {obj.third ? (
-            <Input
-              value={third}
-              setvar={setthird}
-              placeholder="Member 3"
-              secure={false}
-            />
-          ) : (
-            <></>
-          )}
+    
           <TouchableOpacity
             style={{ width: "100%" }}
             onPress={() => {
-              addToCart();
+              submit();
             }}
           >
             <ButtonGradient text={"Add to Cart"} />

@@ -153,7 +153,7 @@ const App = () => {
         overlay={true}
         opacity={0.9}
       >
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Main">
           <Stack.Screen
             name="Login"
             component={Login}

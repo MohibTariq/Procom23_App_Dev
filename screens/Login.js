@@ -10,24 +10,35 @@ import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
+import { login } from "../apis";
 
-function Login() {
-  const navigation = useNavigation();
+function Login({navigation}) {
 
-  function display() {
-    if (email === "") {
-      alert("Enter Email");
-      return;
+    async function submit() {
+      if (email === "") {
+        alert("Enter Email")
+        return;
+      }
+      if (password === "") {
+        alert("Enter Password")
+        return;
+      }
+      console.log("Email:", email);
+      console.log("Password:", password);
+      try{
+        let response = await login({email, password});
+        navigation.navigate('Main')
+      }catch(err){
+        alert(err.message);
+      }
+      setEmail("");
+      setPassword("");
     }
-    if (password === "") {
-      alert("Enter Password");
-      return;
+  
+    const registerUser = () => {
+      navigation.navigate("Main")
     }
-    console.log("Email:", email);
-    console.log("Password:", password);
-    setEmail("");
-    setPassword("");
-  }
+    
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -54,17 +65,16 @@ function Login() {
             secure={true}
           />
           <TouchableOpacity
-            onPress={() => navigation.navigate("Main")}
+            onPress={submit}
             style={{ width: "100%" }}
           >
             <ButtonGradient
               text={"Login"}
-              onPress={() => navigation.navigate("Main")}
             />
           </TouchableOpacity>
           <Text style={styles.text_display1}>Don't have any account?</Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Signup")}
+            onPress={registerUser}
             style={{ width: "100%" }}
           >
             <ButtonGradient text={"Sign Up"} />

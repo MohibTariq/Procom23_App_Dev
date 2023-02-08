@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -8,15 +8,44 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
+import { getCompetitions, getComps } from "../apis";
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const GeneralCompetitions = () => {
-  const navigation = useNavigation();
+const Competiton = ({comp, navigation}) => {
+  return(
+    <View style={{ flexDirection: "row", width: "100%",  marginBottom: 20 }}>
+    <Text style={[styles.text, { width: "90%" }]}>
+      {comp.compname}
+    </Text>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("Competition", { comp })
+      }
+    >
+      <Ionicons
+        style={{ alignSelf: "center" }}
+        size={30}
+        color="white"
+        name="eye"
+      />
+    </TouchableOpacity>
+    </View>
+  );
+}
+
+const GeneralCompetitions = ({navigation}) => {
+  const [comps, getComps] = useState([]);
+  useEffect(()=>{
+    async function fetchData(){
+      let data = await getCompetitions("General Competition");
+      getComps(data)
+    }
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -27,209 +56,21 @@ const GeneralCompetitions = () => {
         <ScrollView
           style={{
             padding: 20,
-            marginTop: 50,
+            marginTop: 20,
             width: "100%",
+            marginBottom: 20
           }}
         >
-          <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Futsal Tournament
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Futsal Tournament",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Painting and Sketching
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Painting and Sketching",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Reels Competition
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Reels Competition",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Taboo Competition
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Taboo Competition",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Chess Competition
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Chess Competition",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Photography</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Photography",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Eat All You Can</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Eat All You Can",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Human Ludo</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Human Ludo",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>IQuest</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "IQuest",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>Math Olympiad</Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Math Olympiad",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: "row", width: "100%", marginTop: 20 }}>
-            <Text style={[styles.text, { width: "90%" }]}>
-              Intraparlimentary Debate
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Competition", {
-                  name: "Intraparlimentary Debate ",
-                })
-              }
-            >
-              <Ionicons
-                style={{ alignSelf: "center" }}
-                size={30}
-                color="white"
-                name="eye"
-              />
-            </TouchableOpacity>
-          </View>
+          {
+            comps.length ? 
+            comps.map((comp, key)=>{
+              return(
+                <Competiton comp={comp} key={key} navigation={navigation} />
+              );
+            }):
+            <Text style={{color: "white"}}>no comps</Text>
+          }
+     
         </ScrollView>
       </ImageBackground>
     </View>

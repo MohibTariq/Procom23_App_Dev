@@ -14,15 +14,19 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import ButtonGradient from "./ButtonGradient";
 import Header from "./Header";
 import Photography from "./Photography";
-import { useNavigation } from "@react-navigation/native";
 
-function Competition({ route }) {
-  const { name } = route.params;
+function Competition({ route, navigation }) {
+  const { comp } = route.params;
 
-  const navigation = useNavigation();
-
+  // to be removed
   const data = require("../assets/ElgiblityCreteria.json");
-  console.log(data);
+
+  const register = () => {
+    navigation.navigate("Register", {
+      comp: comp
+    })
+  }
+  
   return (
     <ImageBackground
       style={{ flex: 1 }}
@@ -35,13 +39,13 @@ function Competition({ route }) {
           colors={["#3E189B", "#E100C1"]}
           style={styles.gradient1}
         >
-          <Text style={styles.btntext}>{name}</Text>
+          <Text style={styles.btntext}>{comp.compname}</Text>
         </LinearGradient>
         <View style={styles.container}>
           <Text style={styles.text_heading}>Introduction</Text>
           <Text style={styles.text_display1}>{data.intro}</Text>
-          <Text style={styles.text_heading}>Eligibility Criteria</Text>
-          <Text style={styles.text_display1}>{data.eligibility}</Text>
+          <Text style={styles.text_heading}>Description</Text>
+          <Text style={styles.text_display1}>{data.Description}</Text>
 
           <Text style={styles.text_heading}>Documents Required (if any)</Text>
           <Text style={[styles.text_display1, { marginBottom: 40 }]}>
@@ -49,7 +53,7 @@ function Competition({ route }) {
           </Text>
           <TouchableOpacity
             style={{ width: "100%" }}
-            onPress={() => navigation.navigate("Register")}
+            onPress={register}
           >
             <ButtonGradient text={"Register Now"} />
           </TouchableOpacity>
