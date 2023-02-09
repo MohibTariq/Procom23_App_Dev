@@ -6,7 +6,7 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
@@ -18,7 +18,6 @@ const onPress = () => {
 
 function SignUp() {
   const navigation = useNavigation();
-
   const [email, setEmail] = useState("");
   function display() {
     if (email === "" || email === "1") {

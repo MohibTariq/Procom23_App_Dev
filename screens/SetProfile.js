@@ -4,7 +4,7 @@ import {
     View,
     Image,
     ScrollView,
-    Button, ImageBackground
+    Button, ImageBackground, ActivityIndicator
   } from "react-native";
   import { useState } from "react";
   import { LinearGradient } from "expo-linear-gradient";
@@ -21,6 +21,7 @@ import {
     const [email, setEmail] = useState("");
     const [university, setUniversity] = useState("");
     const [image, setImage] = useState();
+    const [loading, setLoading] = useState(false);
     async function submit() {
       if (name === "") {
         alert("Enter Name ");
@@ -42,7 +43,8 @@ import {
       console.log("Password:", password);
       console.log("Confirm Password:", conf_password);
       console.log("Contact:", contact);
-  
+
+      setLoading(true)
       try {
         await signup({ fullname: name, password, contact, university, email, isAmbassador: false });
         alert("Registered successfully! Please check your email to verify your account.")
@@ -50,6 +52,7 @@ import {
       } catch (err) {
         alert(err.message);
       }
+      setLoading(false)
       setname("");
       setcontact("");
       setPassword("");
@@ -89,6 +92,9 @@ import {
           <Input value={password} setvar={setPassword} placeholder={"Password"} secure={true} />
           <Input value={conf_password} setvar={setConfPassword} placeholder={"Re-enter Password"} secure={true} />
           <Input value={contact} setvar={setcontact} placeholder={"Contact Number"} secure={false} />
+          {
+              loading ? <ActivityIndicator size="small" color="#ffffff" /> : <></>
+            }
           <ButtonGradient text={"Done"} onclick={submit} />
         </View>
         </ImageBackground>

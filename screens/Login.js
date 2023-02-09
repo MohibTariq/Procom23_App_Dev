@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   ImageBackground,
+  ActivityIndicator
 } from "react-native";
 import { useState } from "react";
 import ButtonGradient from "./ButtonGradient";
@@ -14,7 +15,7 @@ import { login } from "../apis";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Login({navigation}) {
-
+    const [loading, setLoading] = useState(false);
     async function submit() {
       if (email === "") {
         alert("Enter Email")
@@ -29,11 +30,13 @@ function Login({navigation}) {
       try{
         AsyncStorage.removeItem("user");
         AsyncStorage.removeItem("current");
+        setLoading(true);
         let response = await login({email, password});
         AsyncStorage.setItem("current", JSON.stringify(response))
         if(response.isAmbassador){
           AsyncStorage.setItem("user", JSON.stringify(response))
         }
+        setLoading(false);
         navigation.navigate('Main')
       }catch(err){
         alert(err.message);
@@ -78,6 +81,9 @@ function Login({navigation}) {
             <ButtonGradient
               text={"Login"}
             />
+            {
+              loading ? <ActivityIndicator size="small" color="#ffffff" /> : <></>
+            }
           </TouchableOpacity>
           <Text style={styles.text_display1}>Don't have any account?</Text>
           <TouchableOpacity
