@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -11,12 +11,22 @@ import {
   ScrollView,
 } from "react-native";
 import Carousal from "./Slide";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const onPress = () => {
   console.log("Button Pressed");
 };
 
-const HomeScreen = () => (
+const HomeScreen = () => {
+  const [user, setUser] = useState();
+
+  useEffect(()=>{
+    AsyncStorage.getItem("user")
+    .then((result) => {
+      setUser(JSON.parse(result));
+    });
+  })
+  return(
   <View style={styles.container}>
     <ImageBackground
       source={require("../images/Background-Img.png")}
@@ -30,7 +40,7 @@ const HomeScreen = () => (
               uri: "https://reactnative.dev/img/tiny_logo.png",
             }}
           />
-          <Text style={[styles.text, { marginTop: 25 }]}> Welcome Back!</Text>
+          <Text style={[styles.text, { marginTop: 25 }]}> Welcome Back! {user?.isAmbassador ? <Text>(Ambassador)</Text>: <></>}</Text>
         </View>
         <View style={styles.video}>
           <Carousal />
@@ -109,6 +119,7 @@ const HomeScreen = () => (
     </ImageBackground>
   </View>
 );
+                }
 
 const styles = StyleSheet.create({
   container: {

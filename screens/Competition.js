@@ -44,8 +44,12 @@ function Competition({ route, navigation }) {
         <View style={styles.container}>
           <Text style={styles.text_heading}>Introduction</Text>
           <Text style={styles.text_display1}>{data.intro}</Text>
+          <Text style={styles.text_heading}>Fee</Text>
+          <Text style={styles.text_display1}>{"Rs. " + comp.LateBird}</Text>
+          <Text style={styles.text_heading}>Min/Max Participants</Text>
+          <Text style={styles.text_display1}>{comp.minparticipants +" / " + comp.maxparticipants}</Text>
           <Text style={styles.text_heading}>Description</Text>
-          <Text style={styles.text_display1}>{data.Description}</Text>
+          <Text style={styles.text_display1}>{comp.Description}</Text>
 
           <Text style={styles.text_heading}>Documents Required (if any)</Text>
           <Text style={[styles.text_display1, { marginBottom: 40 }]}>

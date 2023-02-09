@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -12,38 +12,41 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import GeneralCompetitions from "./GeneralCompetitions";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getRegisteredCompeitions } from "../apis";
+
 
 const onPress = () => {
   console.log("Button Pressed");
 };
-function Item({ item, patient }) {
+function Item({ item }) {
   return (
     <View style={styles.card}>
       <View style={{ width: "100%" }}>
-        <Text style={styles.text}>Photography</Text>
-        <Text style={styles.smallText}>General Competitions</Text>
+        <Text style={styles.text}>{item.compname}</Text>
+        <Text style={styles.smallText}>{item.CompType}</Text>
         <View style={styles.textBar}>
-          <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
-            Team Name:{" "}
+          <Text style={[styles.text, { color: "black", fontSize: 16, fontWeight: "bold" }]}>
+            Team Name:
           </Text>
           <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
-            XYZ
+          {" " + item.teamname}
           </Text>
         </View>
         <View style={styles.textBar}>
-          <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
-            Team Leader:{" "}
+          <Text style={[styles.text, { color: "black", fontSize: 16, fontWeight: "bold" }]}>
+            Team Leader Id:{" "}
           </Text>
           <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
-            XYZ
+            {item.teamlead}
           </Text>
         </View>
         <View style={styles.textBar}>
-          <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
+          <Text style={[styles.text, { color: "black", fontSize: 16, fontWeight: "bold" }]}>
             Team Members:{" "}
           </Text>
           <Text style={[styles.text, { color: "black", fontSize: 16 }]}>
-            XYZ
+            {item.numofmembers}
           </Text>
         </View>
       </View>
@@ -52,9 +55,19 @@ function Item({ item, patient }) {
   );
 }
 
-const RegisteredCompetitions = () => {
-  const navigation = useNavigation();
-  let Competitions = [1, 2];
+const RegisteredCompetitions = ({navigation}) => {
+  const [comps, setComps] = useState([]);
+
+  useEffect(()=>{
+    async function fetchData(){
+      let result = await AsyncStorage.getItem("current");
+      let user = JSON.parse(result);
+      let response = await getRegisteredCompeitions(user.userid);
+      setComps(response);
+    }
+    fetchData();
+  }, [])
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -69,7 +82,7 @@ const RegisteredCompetitions = () => {
           }}
         >
           <FlatList
-            data={Competitions}
+            data={comps}
             renderItem={({ item }) => <Item item={item} />}
           />
         </View>

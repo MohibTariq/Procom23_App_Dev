@@ -24,6 +24,7 @@ import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Update from "./screens/Update";
 import Sponsors from "./screens/Sponsors";
+import SetProfile from './screens/SetProfile';
 
 import { navigationRef } from "./RootNavigation";
 import * as RootNavigation from "./RootNavigation";
@@ -153,7 +154,7 @@ const App = () => {
         overlay={true}
         opacity={0.9}
       >
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             name="Login"
             component={Login}
@@ -164,6 +165,13 @@ const App = () => {
           <Stack.Screen
             name="Signup"
             component={SignUp}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SetProfile"
+            component={SetProfile}
             options={{
               headerShown: false,
             }}

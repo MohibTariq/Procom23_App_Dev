@@ -68,7 +68,7 @@ const GeneralCompetitions = ({navigation}) => {
                 <Competiton comp={comp} key={key} navigation={navigation} />
               );
             }):
-            <Text style={{color: "white"}}>no comps</Text>
+            <Text style={{color: "white"}}>No competiions. Stay tuned!</Text>
           }
      
         </ScrollView>

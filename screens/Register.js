@@ -14,6 +14,8 @@ import Header from "./Header";
 import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
 import { Alert } from "react-native";
+import { getUserByEmail, registerTeam } from "../apis";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Register({navigation, route}) {
   const {comp} = route.params;
@@ -32,7 +34,7 @@ function Register({navigation, route}) {
       { text: "OK", onPress: () => console.log("OK Pressed") },
     ]);
 
-  function submit() {
+  async function submit() {
     if (field === "") {
       alert("Enter Lead's Email");
       return;
@@ -47,7 +49,19 @@ function Register({navigation, route}) {
     }
 
     // api call
-    
+    let response = await getUserByEmail(field);
+    if(response){
+      let result = await AsyncStorage.getItem("user");
+      let user = JSON.parse(result)
+      let res = await registerTeam(response.userid, teamName, no, user?.userid, comp.compid, comp.EarlyBird);
+      if(res){
+        alert(res)
+      }else{
+        alert("There was an error in registering!")
+      }
+    }else{
+      alert("There was an error in registration. Pls try again!");
+    }
 
     setfield("");
     setteamname("");
@@ -121,7 +135,7 @@ function Register({navigation, route}) {
               submit();
             }}
           >
-            <ButtonGradient text={"Add to Cart"} />
+            <ButtonGradient text={"Register"} />
           </TouchableOpacity>
         </View>
       </ScrollView>

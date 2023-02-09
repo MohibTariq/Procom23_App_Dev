@@ -11,6 +11,7 @@ import Input from "./Input";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { login } from "../apis";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Login({navigation}) {
 
@@ -26,7 +27,13 @@ function Login({navigation}) {
       console.log("Email:", email);
       console.log("Password:", password);
       try{
+        AsyncStorage.removeItem("user");
+        AsyncStorage.removeItem("current");
         let response = await login({email, password});
+        AsyncStorage.setItem("current", JSON.stringify(response))
+        if(response.isAmbassador){
+          AsyncStorage.setItem("user", JSON.stringify(response))
+        }
         navigation.navigate('Main')
       }catch(err){
         alert(err.message);
@@ -36,7 +43,7 @@ function Login({navigation}) {
     }
   
     const registerUser = () => {
-      navigation.navigate("Main")
+      navigation.navigate("SetProfile")
     }
     
   const [email, setEmail] = useState("");
