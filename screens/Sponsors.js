@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Image,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -20,7 +21,10 @@ function Item({ item, patient }) {
   return (
     <View style={styles.card}>
       <View style={{ width: "100%" }}>
-        <Text style={styles.text}>Acha</Text>
+        <Image
+          source={require("../images/softec.png")}
+          style={{ resizeMode: "center" }}
+        />
       </View>
     </View>
   );
@@ -35,18 +39,54 @@ const Sponsors = () => {
         source={require("../images/Background-Img.png")}
         style={styles.image}
       >
-        <View
+        <ScrollView
           style={{
             padding: 20,
             marginTop: 10,
             width: "100%",
           }}
         >
-          <FlatList
+          {/* <FlatList
             data={Competitions}
             renderItem={({ item }) => <Item item={item} />}
-          />
-        </View>
+          /> */}
+          <View style={styles.card}>
+              <Image
+                source={require("../images/bytecorp.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+          <View style={styles.card}>
+              <Image
+                source={require("../images/folio.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+          <View style={styles.card}>
+              <Image
+                source={require("../images/astera.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+          <View style={styles.card}>
+              <Image
+                source={require("../images/wavetec.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+          <View style={styles.card}>
+              <Image
+                source={require("../images/shispare.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+          <View style={styles.card}>
+              <Image
+                source={require("../images/softec.png")}
+                style={{ resizeMode:"center" ,height:"100%",width:"100%"}}
+              />
+          </View>
+        </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -58,13 +98,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   card: {
-    minWidth: "90%",
+    width: "90%",
+    height:130,
     backgroundColor: "#370140",
     alignSelf: "center",
     padding: 25,
     borderRadius: 10,
-    marginTop: 30,
+    // marginTop: 30,
     alignItems: "center",
+    marginBottom:30
   },
   textBar: {
     backgroundColor: "white",

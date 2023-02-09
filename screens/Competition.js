@@ -18,7 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 
 function Competition({ route }) {
   const { name } = route.params;
-
+console.log(name);
   const navigation = useNavigation();
 
   const data = require("../assets/ElgiblityCreteria.json");
