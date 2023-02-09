@@ -24,7 +24,7 @@ import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Update from "./screens/Update";
 import Sponsors from "./screens/Sponsors";
-import SetProfile from './screens/SetProfile';
+import SetProfile from "./screens/SetProfile";
 
 import { navigationRef } from "./RootNavigation";
 import * as RootNavigation from "./RootNavigation";
@@ -32,15 +32,49 @@ import * as RootNavigation from "./RootNavigation";
 import GamingCompetitions from "./screens/GamingCompetitions";
 import CSCompetitions from "./screens/CSCompetition";
 import EECompetitions from "./screens/EECompetitions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [state, setstate] = useState({ open: false });
+  let [user, setUser] = useState("");
+  const [name, setName] = useState("");
+
+  let x = "s";
   function toggleOpen() {
     setstate({ open: !state.open });
   }
+
   function drawerContent() {
+    // async function data() {
+    //   const value = await AsyncStorage.getItem("current");
+    //   if (value !== null) {
+    //     // We have data!!
+    //     console.log("ffffffffff", value);
+    //     setUser(JSON.parse(value));
+    //     console.log("EEEEEEEEEEEEEEEEE", user.email);
+    //     setName(value.fullname);
+    //     return value;
+    //   }
+    // }
+
+    // const data = async () => {
+    //   try {
+    //     let x = await AsyncStorage.getItem("current");
+    //     let rand = await JSON.parse(x);
+    //     if (rand !== null) {
+    //       // We have data!!
+    //       console.log(rand);
+    //       setUser(rand);
+    //     }
+    //   } catch (error) {
+    //     // Error retrieving data
+    //   }
+    // };
+    // data();
+    // console.log(user);
+
     return (
       <View style={styles.animatedBox}>
         <Icon
@@ -60,7 +94,7 @@ const App = () => {
           // source={require("./assets/icon.png")}
           style={styles.image}
         />
-        <Text style={styles.name}>Rohaan</Text>
+        <Text style={styles.name}>{user.fullname}</Text>
         <TouchableOpacity
           onPress={() => {
             RootNavigation.navigate("Profile"), toggleOpen();
@@ -109,15 +143,18 @@ const App = () => {
         >
           <Text style={styles.text}>Sponsers</Text>
         </TouchableOpacity>
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            RootNavigation.navigate("Login"), toggleOpen();
+          }}
           elevation={0.5}
           style={{
             borderTopWidth: StyleSheet.hairlineWidth * 1,
             borderTopColor: "#CC00B0",
           }}
         >
-          <Text style={styles.text}>Log Out</Text>
-        </View>
+          <Text style={styles.text}>Logout</Text>
+        </TouchableOpacity>
         <View
           elevation={0.5}
           style={{

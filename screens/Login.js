@@ -11,41 +11,40 @@ import Input from "./Input";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { login } from "../apis";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function Login({navigation}) {
+function Login({ navigation }) {
+  async function submit() {
+    if (email === "") {
+      alert("Enter Email");
+      return;
+    }
+    if (password === "") {
+      alert("Enter Password");
+      return;
+    }
+    console.log("Email:", email);
+    console.log("Password:", password);
+    try {
+      AsyncStorage.removeItem("user");
+      AsyncStorage.removeItem("current");
+      let response = await login({ email, password });
+      AsyncStorage.setItem("current", JSON.stringify(response));
+      if (response.isAmbassador) {
+        AsyncStorage.setItem("user", JSON.stringify(response));
+      }
+      navigation.navigate("Main");
+    } catch (err) {
+      alert(err.message);
+    }
+    setEmail("");
+    setPassword("");
+  }
 
-    async function submit() {
-      if (email === "") {
-        alert("Enter Email")
-        return;
-      }
-      if (password === "") {
-        alert("Enter Password")
-        return;
-      }
-      console.log("Email:", email);
-      console.log("Password:", password);
-      try{
-        AsyncStorage.removeItem("user");
-        AsyncStorage.removeItem("current");
-        let response = await login({email, password});
-        AsyncStorage.setItem("current", JSON.stringify(response))
-        if(response.isAmbassador){
-          AsyncStorage.setItem("user", JSON.stringify(response))
-        }
-        navigation.navigate('Main')
-      }catch(err){
-        alert(err.message);
-      }
-      setEmail("");
-      setPassword("");
-    }
-  
-    const registerUser = () => {
-      navigation.navigate("SetProfile")
-    }
-    
+  const registerUser = () => {
+    navigation.navigate("SetProfile");
+  };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -71,19 +70,11 @@ function Login({navigation}) {
             placeholder={"Password"}
             secure={true}
           />
-          <TouchableOpacity
-            onPress={submit}
-            style={{ width: "100%" }}
-          >
-            <ButtonGradient
-              text={"Login"}
-            />
+          <TouchableOpacity onPress={submit} style={{ width: "100%" }}>
+            <ButtonGradient text={"Login"} />
           </TouchableOpacity>
           <Text style={styles.text_display1}>Don't have any account?</Text>
-          <TouchableOpacity
-            onPress={registerUser}
-            style={{ width: "100%" }}
-          >
+          <TouchableOpacity onPress={registerUser} style={{ width: "100%" }}>
             <ButtonGradient text={"Sign Up"} />
           </TouchableOpacity>
         </View>

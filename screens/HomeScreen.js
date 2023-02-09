@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import Carousal from "./Slide";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const onPress = () => {
   console.log("Button Pressed");
@@ -20,106 +20,117 @@ const onPress = () => {
 const HomeScreen = () => {
   const [user, setUser] = useState();
 
-  useEffect(()=>{
-    AsyncStorage.getItem("user")
-    .then((result) => {
+  useEffect(() => {
+    AsyncStorage.getItem("user").then((result) => {
       setUser(JSON.parse(result));
     });
-  })
-  return(
-  <View style={styles.container}>
-    <ImageBackground
-      source={require("../images/Background-Img.png")}
-      style={styles.image}
-    >
-      <ScrollView>
-        <View style={{ flexDirection: "row", padding: 10, marginBottom: 20 }}>
-          <Image
-            style={styles.tinyLogo}
-            source={{
-              uri: "https://reactnative.dev/img/tiny_logo.png",
-            }}
-          />
-          <Text style={[styles.text, { marginTop: 25 }]}> Welcome Back! {user?.isAmbassador ? <Text>(Ambassador)</Text>: <></>}</Text>
-        </View>
-        <View style={styles.video}>
-          <Carousal />
-        </View>
-        <View
-          style={{
-            width: "100%",
-            height: 80,
-            borderRadius: 10,
-            backgroundColor: "#370140",
-            alignSelf: "center",
-            marginTop: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "row",
-          }}
-        >
-          <Text style={styles.text}>Procom'23: </Text>
-          <View style={styles.durationBox}>
-            <Text style={styles.textSmall}>Day:</Text>
-            <Text style={styles.textBold}>4</Text>
+  });
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../images/Background-Img.png")}
+        style={styles.image}
+      >
+        <ScrollView>
+          {/* <View style={{ flexDirection: "row", padding: 10, marginBottom: 20 }}>
+            <Image
+              style={styles.tinyLogo}
+              source={{
+                uri: "https://reactnative.dev/img/tiny_logo.png",
+              }}
+            />
+            <Text style={[styles.text, { marginTop: 25 }]}>
+              {" "}
+              Welcome Back!{" "}
+              {user?.isAmbassador ? <Text>(Ambassador)</Text> : <></>}
+            </Text>
+          </View> */}
+          <View style={styles.video}>
+            <Carousal />
           </View>
-          <View style={styles.durationBox}>
-            <Text style={styles.textSmall}>Hours:</Text>
-            <Text style={styles.textBold}>5</Text>
-          </View>
-          <View style={styles.durationBox}>
-            <Text style={styles.textSmall}>Minutes:</Text>
-            <Text style={styles.textBold}>4</Text>
-          </View>
-        </View>
-        <View style={{ alignItems: "center", marginTop: 20 }}>
-          <Text style={styles.text}>What do we offer</Text>
           <View
             style={{
-              flexDirection: "row",
               width: "100%",
+              height: 80,
+              borderRadius: 10,
+              backgroundColor: "#370140",
+              alignSelf: "center",
               marginTop: 20,
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
             }}
           >
-            <View style={styles.box}>
-              <ImageBackground
-                source={require("../images/23.png")}
-                resizeMode={"stretch"}
-                style={styles.image}
-              >
-                <Text
-                  style={[
-                    styles.textBold,
-                    { color: "white", marginTop: "auto", textAlign: "center" },
-                  ]}
-                >
-                  Gaming Competitions
-                </Text>
-              </ImageBackground>
+            <Text style={styles.text}>Procom'23: </Text>
+            <View style={styles.durationBox}>
+              <Text style={styles.textSmall}>Day:</Text>
+              <Text style={styles.textBold}>4</Text>
             </View>
-            <View style={[styles.box, { marginLeft: "auto" }]}>
-              <ImageBackground
-                source={require("../images/23.png")}
-                resizeMode={"stretch"}
-                style={styles.image}
-              >
-                <Text
-                  style={[
-                    styles.textBold,
-                    { color: "white", marginTop: "auto", textAlign: "center" },
-                  ]}
-                >
-                  Job Fair
-                </Text>
-              </ImageBackground>
+            <View style={styles.durationBox}>
+              <Text style={styles.textSmall}>Hours:</Text>
+              <Text style={styles.textBold}>5</Text>
+            </View>
+            <View style={styles.durationBox}>
+              <Text style={styles.textSmall}>Minutes:</Text>
+              <Text style={styles.textBold}>4</Text>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </ImageBackground>
-  </View>
-);
-                }
+          <View style={{ alignItems: "center", marginTop: 20 }}>
+            <Text style={styles.text}>What do we offer</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                width: "100%",
+                marginTop: 20,
+              }}
+            >
+              <View style={styles.box}>
+                <ImageBackground
+                  source={require("../images/23.png")}
+                  resizeMode={"stretch"}
+                  style={styles.image}
+                >
+                  <Text
+                    style={[
+                      styles.textBold,
+                      {
+                        color: "white",
+                        marginTop: "auto",
+                        textAlign: "center",
+                      },
+                    ]}
+                  >
+                    Gaming Competitions
+                  </Text>
+                </ImageBackground>
+              </View>
+              <View style={[styles.box, { marginLeft: "auto" }]}>
+                <ImageBackground
+                  source={require("../images/23.png")}
+                  resizeMode={"stretch"}
+                  style={styles.image}
+                >
+                  <Text
+                    style={[
+                      styles.textBold,
+                      {
+                        color: "white",
+                        marginTop: "auto",
+                        textAlign: "center",
+                      },
+                    ]}
+                  >
+                    Job Fair
+                  </Text>
+                </ImageBackground>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      </ImageBackground>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

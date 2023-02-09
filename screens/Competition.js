@@ -23,10 +23,10 @@ function Competition({ route, navigation }) {
 
   const register = () => {
     navigation.navigate("Register", {
-      comp: comp
-    })
-  }
-  
+      comp: comp,
+    });
+  };
+
   return (
     <ImageBackground
       style={{ flex: 1 }}
@@ -42,23 +42,20 @@ function Competition({ route, navigation }) {
           <Text style={styles.btntext}>{comp.compname}</Text>
         </LinearGradient>
         <View style={styles.container}>
-          <Text style={styles.text_heading}>Introduction</Text>
-          <Text style={styles.text_display1}>{data.intro}</Text>
+          <Text style={styles.text_heading}>Description</Text>
+          <Text style={styles.text_display1}>{comp.Description}</Text>
           <Text style={styles.text_heading}>Fee</Text>
           <Text style={styles.text_display1}>{"Rs. " + comp.LateBird}</Text>
           <Text style={styles.text_heading}>Min/Max Participants</Text>
-          <Text style={styles.text_display1}>{comp.minparticipants +" / " + comp.maxparticipants}</Text>
-          <Text style={styles.text_heading}>Description</Text>
-          <Text style={styles.text_display1}>{comp.Description}</Text>
+          <Text style={styles.text_display1}>
+            {comp.minparticipants + " / " + comp.maxparticipants}
+          </Text>
 
           <Text style={styles.text_heading}>Documents Required (if any)</Text>
           <Text style={[styles.text_display1, { marginBottom: 40 }]}>
             {data.documents}
           </Text>
-          <TouchableOpacity
-            style={{ width: "100%" }}
-            onPress={register}
-          >
+          <TouchableOpacity style={{ width: "100%" }} onPress={register}>
             <ButtonGradient text={"Register Now"} />
           </TouchableOpacity>
         </View>

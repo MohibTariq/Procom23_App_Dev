@@ -16,14 +16,14 @@ const DATA = [
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "Procom Blah blah!",
     subtitle: "Some more blah blah",
-    image: Image.resolveAssetSource(require("../images/23.png")).uri,
+    image: Image.resolveAssetSource(require("../images/slide-1.jpeg")).uri,
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "Procom Blah blah Screen 2",
     subtitle: "Some more blah blah",
 
-    image: Image.resolveAssetSource(require("../images/23.png")).uri,
+    image: Image.resolveAssetSource(require("../images/slide-2.jpeg")).uri,
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -34,7 +34,6 @@ const DATA = [
     image: Image.resolveAssetSource(require("../images/23.png")).uri,
   },
 ];
-
 // Default Props
 const defaults = {
   height: "100%",
@@ -106,7 +105,6 @@ export default function Carousal({
     // Divide the horizontal offset by the width of the view to see which page is visible
     setselectedIndex(Math.floor(contentOffset.x / viewSize.width));
   };
-
   return (
     <View>
       <ScrollView

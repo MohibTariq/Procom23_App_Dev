@@ -9,6 +9,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import MenuDrawer from "react-native-side-drawer";
 import * as RootNavigation from "../RootNavigation";
+import ProfileFooter from "./ProfileFooter";
 const Tab = createBottomTabNavigator();
 
 export default function Main() {
@@ -85,15 +86,18 @@ export default function Main() {
         >
           <Text style={styles.text}>Sponsers</Text>
         </TouchableOpacity>
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            RootNavigation.navigate("Login"), toggleOpen();
+          }}
           elevation={0.5}
           style={{
             borderTopWidth: StyleSheet.hairlineWidth * 1,
             borderTopColor: "#CC00B0",
           }}
         >
-          <Text style={styles.text}>Log Out</Text>
-        </View>
+          <Text style={styles.text}>Logout</Text>
+        </TouchableOpacity>
         <View
           elevation={0.5}
           style={{
@@ -137,7 +141,9 @@ export default function Main() {
             if (route.name === "Home") {
               iconName = focused ? "ios-home" : "ios-home-outline";
             } else if (route.name === "Cart") {
-              iconName = focused ? "ios-cart" : "ios-cart-outline";
+              iconName = focused
+                ? "ios-person-circle"
+                : "ios-person-circle-outline";
             } else if (route.name === "Explore") {
               iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
             }
@@ -152,7 +158,25 @@ export default function Main() {
         <Tab.Screen
           name="Home"
           component={HomeScreen}
-          options={{ headerShown: false }}
+          options={{
+            headerRight: () => (
+              <Icon
+                onPress={toggleOpen}
+                title="Info"
+                name="menu"
+                color="white"
+                size={35}
+              />
+            ),
+            title: "Welcome Back!",
+            headerStyle: {
+              backgroundColor: "black",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
         />
         <Tab.Screen
           name="Explore"
@@ -182,7 +206,7 @@ export default function Main() {
         />
         <Tab.Screen
           name="Cart"
-          component={Cart}
+          component={ProfileFooter}
           options={{
             headerRight: () => (
               <Icon
@@ -193,7 +217,7 @@ export default function Main() {
                 size={35}
               />
             ),
-            title: "Cart",
+            title: "Profile",
             headerStyle: {
               backgroundColor: "#370140",
             },

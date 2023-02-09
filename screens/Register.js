@@ -15,10 +15,10 @@ import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
 import { Alert } from "react-native";
 import { getUserByEmail, registerTeam } from "../apis";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function Register({navigation, route}) {
-  const {comp} = route.params;
+function Register({ navigation, route }) {
+  const { comp } = route.params;
 
   const addToCart = () =>
     Alert.alert("Added to Cart", "My Alert Msg", [
@@ -50,16 +50,24 @@ function Register({navigation, route}) {
 
     // api call
     let response = await getUserByEmail(field);
-    if(response){
+    if (response) {
       let result = await AsyncStorage.getItem("user");
-      let user = JSON.parse(result)
-      let res = await registerTeam(response.userid, teamName, no, user?.userid, comp.compid, comp.EarlyBird);
-      if(res){
-        alert(res)
-      }else{
-        alert("There was an error in registering!")
+      let user = JSON.parse(result);
+      let res = await registerTeam(
+        response.userid,
+        teamName,
+        no,
+        user?.userid,
+        comp.compid,
+        comp.EarlyBird
+      );
+      console.log("Userr::::::::", user, "result:::::::", result);
+      if (res) {
+        alert(res);
+      } else {
+        alert("There was an error in registering!");
       }
-    }else{
+    } else {
       alert("There was an error in registration. Pls try again!");
     }
 
@@ -121,14 +129,14 @@ function Register({navigation, route}) {
             placeholder="Team Name"
             secure={false}
           />
-           <Input
-              style={styles.TextInput}
-              keyboardType="numeric"
-              placeholder="Number of Participants"
-              setvar={setno}
-              value={no}
-            />
-    
+          <Input
+            style={styles.TextInput}
+            keyboardType="numeric"
+            placeholder="Number of Participants"
+            setvar={setno}
+            value={no}
+          />
+
           <TouchableOpacity
             style={{ width: "100%" }}
             onPress={() => {
