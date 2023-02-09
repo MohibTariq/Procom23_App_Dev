@@ -50,7 +50,7 @@ const Explore = () => {
               <Text style={styles.text}>EE Competitions</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonRow}>
-              <Text style={styles.text}>BBA Competitions</Text>
+              <Text style={styles.text}>Starup Showdown</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
