@@ -19,13 +19,35 @@ const onPress = () => {
 
 const HomeScreen = () => {
   const [user, setUser] = useState();
-
+  const [days, setDays] = useState();
+  const [hours, setHours] = useState();
+  const [minutes, setMinues] = useState();
   useEffect(()=>{
     AsyncStorage.getItem("user")
     .then((result) => {
       setUser(JSON.parse(result));
     });
-  })
+  }, [])
+
+  useEffect(()=>{
+    setInterval(()=>{
+      let date_now = Date.now();
+
+      // date and time of procom
+      let date = new Date("2023-02-12T17:00:00");
+      let date_future = date.getTime();
+      var delta = Math.abs(date_future - date_now) / 1000;
+      var days = Math.floor(delta / 86400);
+      setDays(days)
+      delta -= days * 86400;
+   
+      var hours = Math.floor(delta / 3600) % 24;
+      setHours(hours)
+      delta -= hours * 3600;
+      var minutes = Math.floor(delta / 60) % 60;
+      setMinues(minutes)
+    }, 1000)
+  }, [])
   return(
   <View style={styles.container}>
     <ImageBackground
@@ -58,18 +80,18 @@ const HomeScreen = () => {
             flexDirection: "row",
           }}
         >
-          <Text style={styles.text}>Procom'23: </Text>
+          <Text style={styles.text}>Procom' 23: </Text>
           <View style={styles.durationBox}>
-            <Text style={styles.textSmall}>Day:</Text>
-            <Text style={styles.textBold}>4</Text>
+            <Text style={styles.textSmall}>Days:</Text>
+            <Text style={styles.textBold}>{days}</Text>
           </View>
           <View style={styles.durationBox}>
             <Text style={styles.textSmall}>Hours:</Text>
-            <Text style={styles.textBold}>5</Text>
+            <Text style={styles.textBold}>{hours}</Text>
           </View>
           <View style={styles.durationBox}>
             <Text style={styles.textSmall}>Minutes:</Text>
-            <Text style={styles.textBold}>4</Text>
+            <Text style={styles.textBold}>{minutes}</Text>
           </View>
         </View>
         <View style={{ alignItems: "center", marginTop: 20 }}>

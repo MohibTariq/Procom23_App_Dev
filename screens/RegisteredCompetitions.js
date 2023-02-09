@@ -81,10 +81,14 @@ const RegisteredCompetitions = ({navigation}) => {
             width: "100%",
           }}
         >
-          <FlatList
+          {
+            comps.length ? 
+            <FlatList
             data={comps}
             renderItem={({ item }) => <Item item={item} />}
-          />
+          />:
+          <Text style={{color: "white"}}>You haven't registered in any competition yet!</Text>
+          }
         </View>
       </ImageBackground>
     </View>
