@@ -11,7 +11,7 @@ const AppStack = () => {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Home" component={DrawerNavigation} />
+            <Stack.Screen name="App" component={DrawerNavigation} />
         </Stack.Navigator>
     );
 }

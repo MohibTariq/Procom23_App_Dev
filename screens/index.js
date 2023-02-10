@@ -14,7 +14,8 @@ import Register from "./Register";
 import Sponsors from "./Sponsors";
 import Main from "./Main";
 import Competition from './Competition';
+import SignUpTeamLead from './SignUpTeamLead';
 
 export {
-    Competition, Main, Login, SignUp, SetProfile, RegisteredCompetitions, GeneralCompetitions, CSCompetitions, EECompetitions, Developer, About, Explore, GamingCompetitions, HomeScreen, Register, Sponsors 
+   SignUpTeamLead, Competition, Main, Login, SignUp, SetProfile, RegisteredCompetitions, GeneralCompetitions, CSCompetitions, EECompetitions, Developer, About, Explore, GamingCompetitions, HomeScreen, Register, Sponsors 
 };

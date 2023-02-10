@@ -2,7 +2,7 @@ import React from 'react';
 import { createDrawerNavigator, DrawerToggleButton } from '@react-navigation/drawer';
 import DrawerContent from '../components/DrawerContent';
 import RegisteredCompetitions from '../screens/RegisteredCompetitions';
-import {GeneralCompetitions, GamingCompetitions, CSCompetitions, EECompetitions, Competition, Sponsors, Main, Developer, Register } from '../screens';
+import {GeneralCompetitions, GamingCompetitions, CSCompetitions, EECompetitions, Competition, Sponsors, Main, Developer, Register,SignUpTeamLead  } from '../screens';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Image } from 'react-native';
 
@@ -19,7 +19,7 @@ export default function DrawerNavigation({navigation}) {
                 drawerPosition: "right",
                 headerLeft: false,
                 headerTitleStyle: {
-                    height: route.name == "Main" ?  0 : 25,
+                    height: route.name == "Home" ?  0 : 25,
                 },
                 headerTintColor: "white",
                 headerStyle:{
@@ -31,7 +31,7 @@ export default function DrawerNavigation({navigation}) {
                 },
                 headerRight: () => <DrawerToggleButton tintColor='white' />,
                 headerLeft: () => {
-                    if(route.name == "Main"){
+                    if(route.name == "Home"){
                         return <Image style={{width: 150, height: 50, margin: 20}} source={require('../assets/Logo.png')} />
                     }else{
                         return <Ionicons  name="chevron-back" size={22} style={{marginLeft: 10}} color="white" onPress={() => { navigation.goBack(); }}/>
@@ -51,6 +51,7 @@ export default function DrawerNavigation({navigation}) {
             <Drawer.Screen name="EE Competitions" component={EECompetitions} options={{ unmountOnBlur: true, drawerItemStyle:{height: 0} }} />
             <Drawer.Screen name="Gaming Competitions" component={GamingCompetitions} options={{ unmountOnBlur: true, drawerItemStyle:{height: 0} }} />
             <Drawer.Screen name="Register" component={Register} options={{ unmountOnBlur: true, drawerItemStyle:{height: 0} }} />
+            <Drawer.Screen name="Sign up lead" component={SignUpTeamLead} options={{ unmountOnBlur: true, drawerItemStyle:{height: 0} }} />
         </Drawer.Navigator>
 );
 }

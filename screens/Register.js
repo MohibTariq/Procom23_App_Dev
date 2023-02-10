@@ -2,38 +2,78 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  Linking,
 } from "react-native";
-import { useState } from "react";
-
-import Main from "./Main";
-import Header from "./Header";
+import { useEffect, useState } from "react";
 import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
-import { Alert } from "react-native";
-import { getUserByEmail, registerTeam } from "../apis";
+import { getUserByEmail, registerTeam, make_payment, checkStatus } from "../apis";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Register({navigation, route}) {
   const {comp} = route.params;
   const [loading, setLoading] = useState(false);
+  const [payproId, setPayproId] = useState(null);
+  const [user, setUser] = useState({});
 
-  const addToCart = () =>
-    Alert.alert("Added to Cart", "My Alert Msg", [
-      {
-        text: "Ask me later",
-        onPress: () => console.log("Ask me later pressed"),
-      },
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
+  useEffect(()=>{
+    AsyncStorage.getItem("current").then((result)=>{
+      let user_ = JSON.parse(result);
+      setUser(user_);
+    });
+  }, [])
+
+  // const addToCart = () =>
+  //   Alert.alert("Added to Cart", "My Alert Msg", [
+  //     {
+  //       text: "Ask me later",
+  //       onPress: () => console.log("Ask me later pressed"),
+  //     },
+  //     {
+  //       text: "Cancel",
+  //       onPress: () => console.log("Cancel Pressed"),
+  //       style: "cancel",
+  //     },
+  //     { text: "OK", onPress: () => console.log("OK Pressed") },
+  //   ]);
+
+  async function submit_ambassador(){
+    if (field === "") {
+      alert("Enter Lead's Email");
+      return;
+    }
+    if (teamName === "") {
+      alert("Enter Team Name");
+      return;
+    }
+    if (no === "" || no > comp.maxparticipants) {
+      alert("Invalid number of participants");
+      return;
+    }
+
+    try{
+      let response = await getUserByEmail(field);
+      setLoading(true);
+      let res = await registerTeam(response.userid, teamName, no, user.userid, comp.compid, comp.EarlyBird);
+      if(res){
+        alert(res);
+        setLoading(false);
+      }else{
+        alert("There was an error in registering!")
+        setLoading(false);
+      }
+      setfield("");
+      setteamname("");
+      setno("");      
+    }catch(err){
+      setLoading(false);
+      alert("There was an error in registering!");
+    }
+
+  }
 
   async function submit() {
     if (field === "") {
@@ -49,30 +89,52 @@ function Register({navigation, route}) {
       return;
     }
 
-    // api call
     setLoading(true);
     let response = await getUserByEmail(field);
     if(response){
-      let result = await AsyncStorage.getItem("current");
-      let user = JSON.parse(result)
-      let ambassador_id = user.isAmbassador ? user.userid : null
-      let res = await registerTeam(response.userid, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
-      if(res){
-        alert(res);
+      try{
+        let res = await make_payment(response.fullname, response.email, response.contact, comp.LateBird);
+        Linking.openURL(res[0]); 
+        setPayproId(res[1]);
         setLoading(false);
-      }else{
-        alert("There was an error in registering!")
+      }catch(err){
         setLoading(false);
+        alert(err.message);
       }
     }else{
       alert("There was an error in registration. Pls try again!");
       setLoading(false);
     }
-
-    setfield("");
-    setteamname("");
-    setno("");
   }
+
+  async function proceed(){
+    let ambassador_id = user.isAmbassador ? user.userid : null
+    setLoading(true);
+    try{
+      let response = await checkStatus(payproId);
+      if(response){
+        let res = await registerTeam(response.userid, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
+        if(res){
+          alert(res);
+          setLoading(false);
+        }else{
+          alert("There was an error in registering!")
+          setLoading(false);
+        }
+        setfield("");
+        setteamname("");
+        setno("");
+        setPayproId(null);
+      }else{
+        alert("Please complete the payment process!")
+      }
+    }catch(err){
+      setLoading(false);
+      setPayproId(null);
+      alert(err.message)
+    }
+  }
+
   function check(num) {
     if (num > "3" || (num < "1" && num !== "")) {
       console.log(num, typeof num);
@@ -137,12 +199,27 @@ function Register({navigation, route}) {
     
           <TouchableOpacity
             style={{ width: "100%" }}
-            onPress={() => {
-              submit();
+            onPress={async () => {
+              user.isAmbassador ? submit_ambassador() :
+              payproId ? proceed() : submit();
             }}
           >
-            <ButtonGradient text={"Register"} loading={loading} />
+            <ButtonGradient text={user.isAmbassador ? "Register" : payproId ? "Register" : "Proceed to checkout"} loading={loading} />
           </TouchableOpacity>
+
+          {
+
+            user.isAmbassador ? 
+            <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={async () => {
+              navigation.navigate("Sign up lead")
+            }}
+          >
+            <ButtonGradient text={"Sign Up Team lead"} />
+          </TouchableOpacity>
+          : <></>
+          }
         </View>
       </ScrollView>
     </ImageBackground>

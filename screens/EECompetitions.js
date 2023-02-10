@@ -6,15 +6,12 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import { getCompetitions } from "../apis";
-
-const onPress = () => {
-  console.log("Button Pressed");
-};
 
 const Competiton = ({comp, navigation}) => {
   return(

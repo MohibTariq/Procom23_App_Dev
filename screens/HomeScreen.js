@@ -31,7 +31,7 @@ const HomeScreen = () => {
       let date_now = Date.now();
 
       // date and time of procom
-      let date = new Date("2023-02-12T17:00:00");
+      let date = new Date("2023-03-09T08:00:00");
       let date_future = date.getTime();
       var delta = Math.abs(date_future - date_now) / 1000;
       var days = Math.floor(delta / 86400);
