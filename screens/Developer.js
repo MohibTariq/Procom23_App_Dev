@@ -19,36 +19,48 @@ function Developer(props) {
         <View style={styles.container}>
           <Text style={styles.text_heading}>The Developers Team</Text>
           <Text style={styles.text_display1}>
-            Qui amet aliqua pariatur ea labore Lorem id duis esse ipsum sit eu
-            nostrud culpa. Ut laboris aliqua incididunt sint Lorem deserunt
-            cupidatat sint aliquip qui minim sint laboris. Ad non dolore officia
-            nostrud eu aute velit non in nostrud deserunt irure ex.
+            The development team behind our application is a group of talented
+            and experienced professionals who are passionate about delivering
+            innovative solutions to meet the needs of our users. With a diverse
+            range of skills and expertise, including software engineering, user
+            experience design, and project management, our team is dedicated to
+            creating a high-quality and user-friendly application.
           </Text>
           <Text style={styles.text_heading}>Our Development Team</Text>
           <Card
-            name={"Moasddsa"}
-            title={"Head"}
+            name={"Mustafa Malik"}
+            title={"Developer"}
+            image={require("../images/Mustafa.jpg")}
+          />
+          <Card
+            name={"Mohib Tariq"}
+            title={"Developer"}
+            image={require("../images/Mohib.jpg")}
+          />
+          <Card
+            name={"Midhat Karim"}
+            title={"Developer"}
+            image={require("../images/Midhat.jpg")}
+          />
+          <Card
+            name={"Ahmed Naeem"}
+            title={"Developer"}
             //   image={require("./assets/user.jpg")}
           />
           <Card
-            name={"ransdsad"}
-            title={"Head"}
-            //   image={require("./assets/user.jpg")}
+            name={"Saad Ali"}
+            title={"Developer"}
+            image={require("../images/Saad.jpeg")}
           />
           <Card
-            name={"Madsdsad"}
-            title={"Head"}
-            //   image={require("./assets/user.jpg")}
+            name={"Sammam Sohail"}
+            title={"Developer"}
+            image={require("../images/Sammam.png")}
           />
           <Card
-            name={"Madssa asdsa"}
-            title={"Head"}
-            //   image={require("./assets/user.jpg")}
-          />
-          <Card
-            name={"Masdsad"}
-            title={"Head"}
-            //   image={require("./assets/user.jpg")}
+            name={"Amin Farjad"}
+            title={"Developer"}
+            image={require("../images/user.png")}
           />
         </View>
       </ScrollView>

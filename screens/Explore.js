@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: "white",
+    color: "#370140",
     textAlign: "center",
   },
   button: {
     width: "80%",
-    backgroundColor: "#370140",
+    backgroundColor: "#fff",
     height: 100,
     alignSelf: "center",
     borderRadius: 10,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     width: "35%",
-    backgroundColor: "#370140",
+    backgroundColor: "#fff",
     height: 100,
     alignSelf: "center",
     borderRadius: 10,
