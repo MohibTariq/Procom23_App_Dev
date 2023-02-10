@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Register({navigation, route}) {
   const {comp} = route.params;
+  const [loading, setLoading] = useState(false);
 
   const addToCart = () =>
     Alert.alert("Added to Cart", "My Alert Msg", [
@@ -49,18 +50,23 @@ function Register({navigation, route}) {
     }
 
     // api call
+    setLoading(true);
     let response = await getUserByEmail(field);
     if(response){
-      let result = await AsyncStorage.getItem("user");
+      let result = await AsyncStorage.getItem("current");
       let user = JSON.parse(result)
-      let res = await registerTeam(response.userid, teamName, no, user?.userid, comp.compid, comp.EarlyBird);
+      let ambassador_id = user.isAmbassador ? user.userid : null
+      let res = await registerTeam(response.userid, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
       if(res){
-        alert(res)
+        alert(res);
+        setLoading(false);
       }else{
         alert("There was an error in registering!")
+        setLoading(false);
       }
     }else{
       alert("There was an error in registration. Pls try again!");
+      setLoading(false);
     }
 
     setfield("");
@@ -135,7 +141,7 @@ function Register({navigation, route}) {
               submit();
             }}
           >
-            <ButtonGradient text={"Register"} />
+            <ButtonGradient text={"Register"} loading={loading} />
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -4,7 +4,7 @@ import {
     View,
     Image,
     ScrollView,
-    Button, ImageBackground, ActivityIndicator
+    Button, ImageBackground, ActivityIndicator, TouchableOpacity
   } from "react-native";
   import { useState } from "react";
   import { LinearGradient } from "expo-linear-gradient";
@@ -60,15 +60,20 @@ import {
       setUniversity("");
       setEmail("");
     }
+
+    const signIn = () => {
+      navigation.navigate("Login")
+    }
+
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <ImageBackground source={require("../images/Background-Img.png")} resizeMode="cover" style={styles.image_bg}>
         <View style={styles.container}>
-          <Text style={styles.heading}>Set up your Profile</Text>
-          <Image source={require("../assets/icon.png")} style={styles.image} />
+          <Text style={styles.heading}>Sign Up</Text>
+          {/* <Image source={require("../assets/icon.png")} style={styles.image} /> */}
   
           {/* //disable this section if camera icon isn't needed */}
-          <View
+          {/* <View
             style={{ width: 33, height: 30, top: -40, left: 33, borderRadius: 50 }}>
             <LinearGradient
               start={{ x: 0, y: 0 }}
@@ -83,7 +88,7 @@ import {
                 style={{ textAlign: "center", marginTop: 3, marginLeft: 2 }}
               />
             </LinearGradient>
-          </View>
+          </View> */}
           {/* //till here  */}
           {/* <Button title="Select Image" onPress={pickImage} /> */}
           <Input value={name} setvar={setname} placeholder={"Full name"} secure={false} />
@@ -92,10 +97,14 @@ import {
           <Input value={password} setvar={setPassword} placeholder={"Password"} secure={true} />
           <Input value={conf_password} setvar={setConfPassword} placeholder={"Re-enter Password"} secure={true} />
           <Input value={contact} setvar={setcontact} placeholder={"Contact Number"} secure={false} />
-          {
-              loading ? <ActivityIndicator size="small" color="#ffffff" /> : <></>
-            }
-          <ButtonGradient text={"Done"} onclick={submit} />
+          <ButtonGradient text={"Sign up"} onclick={submit} loading={loading} />
+          <Text style={styles.text_display1}>Already have an account?</Text>
+          <TouchableOpacity
+            onPress={signIn}
+            style={{ width: "100%" }}
+          >
+            <ButtonGradient text={"Sign in"} />
+          </TouchableOpacity>
         </View>
         </ImageBackground>
       </ScrollView>
@@ -145,13 +154,18 @@ import {
     heading: {
       fontSize: 30,
       color: "#fff",
-      marginBottom: 20,
+      marginBottom: 30,
     },
     image: {
       height: 100,
       width: 100,
       marginBottom: 10,
       borderRadius: 50,
+    },
+    text_display1: {
+      fontSize: 16,
+      margin: 5,
+      color: "#fff",
     },
     image_bg: {
       flex: 1,

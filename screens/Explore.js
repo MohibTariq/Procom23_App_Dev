@@ -1,4 +1,5 @@
 import React from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   ImageBackground,
   StyleSheet,
@@ -8,15 +9,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
-const onPress = () => {
-  console.log("Button Pressed");
-};
-
-const Explore = () => {
-  const navigation = useNavigation();
-
+const Explore = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -24,34 +18,72 @@ const Explore = () => {
         style={styles.image}
       >
         <ScrollView style={{ marginTop: 20 }}>
+        <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      style={styles.button}
+      >
           <TouchableOpacity
-            onPress={() => navigation.navigate("GeneralCompetitions")}
-            style={styles.button}
+            onPress={() => navigation.navigate("General Competitions")}
+            style={styles.gradient}
           >
             <Text style={styles.text}>General Competitions</Text>
           </TouchableOpacity>
+          </LinearGradient>
+
+          <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      style={styles.button}
+      >
           <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("GamingCompetitions")}
+            style={styles.gradient}
+            onPress={() => navigation.navigate("Gaming Competitions")}
           >
             <Text style={styles.text}>Gaming Competitions</Text>
           </TouchableOpacity>
+          </LinearGradient>
+
+          <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      style={styles.button}
+      >
           <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("CSCompetitions")}
+            style={styles.gradient}
+            onPress={() => navigation.navigate("CS Competitions")}
           >
             <Text style={styles.text}>CS Competitions</Text>
           </TouchableOpacity>
+          </LinearGradient>
+
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
+          <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      style={styles.buttonRow}
+      >
             <TouchableOpacity
-              style={styles.buttonRow}
-              onPress={() => navigation.navigate("EECompetitions")}
+              style={styles.buttonRowGrad}
+              onPress={() => navigation.navigate("EE Competitions")}
             >
               <Text style={styles.text}>EE Competitions</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonRow}>
+            </LinearGradient>
+            <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      style={styles.buttonRow}
+      >
+            <TouchableOpacity style={styles.buttonRowGrad}>
               <Text style={styles.text}>Starup Showdown</Text>
             </TouchableOpacity>
+            </LinearGradient>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -85,6 +117,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  gradient: {
+    width: "80%",
+    height: 100,
+    alignSelf: "center",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   buttonRow: {
     width: "35%",
     backgroundColor: "#370140",
@@ -96,6 +136,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
     padding: 5,
+  },
+  buttonRowGrad: {
+    height: 100,
+    alignSelf: "center",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

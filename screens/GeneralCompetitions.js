@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -39,10 +40,13 @@ const Competiton = ({comp, navigation}) => {
 
 const GeneralCompetitions = ({navigation}) => {
   const [comps, getComps] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
     async function fetchData(){
+      setLoading(true);
       let data = await getCompetitions("General Competition");
       getComps(data)
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -62,6 +66,7 @@ const GeneralCompetitions = ({navigation}) => {
           }}
         >
           {
+            loading ? <ActivityIndicator size="small" color="#ffffff" style={{marginRight: 10}} /> :
             comps.length ? 
             comps.map((comp, key)=>{
               return(

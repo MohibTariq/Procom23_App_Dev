@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { DarkTheme, useNavigation } from "@react-navigation/native";
@@ -40,10 +41,13 @@ const Competiton = ({comp, navigation}) => {
 
 const CSCompetitions = ({navigation}) => {
   const [comps, getComps] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
     async function fetchData(){
+      setLoading(true);
       let data = await getCompetitions("Computer Science");
       getComps(data)
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -61,6 +65,7 @@ const CSCompetitions = ({navigation}) => {
           }}
         >
           {
+            loading ? <ActivityIndicator size="small" color="#ffffff" style={{marginRight: 10}} /> :
             comps.length ? 
             comps.map((comp, key)=>{
               return(

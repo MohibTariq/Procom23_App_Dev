@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   ImageBackground,
   StyleSheet,
@@ -12,10 +13,6 @@ import {
 } from "react-native";
 import Carousal from "./Slide";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const onPress = () => {
-  console.log("Button Pressed");
-};
 
 const HomeScreen = () => {
   const [user, setUser] = useState();
@@ -55,19 +52,14 @@ const HomeScreen = () => {
       style={styles.image}
     >
       <ScrollView>
-        <View style={{ flexDirection: "row", padding: 10, marginBottom: 20 }}>
-          <Image
-            style={styles.tinyLogo}
-            source={{
-              uri: "https://reactnative.dev/img/tiny_logo.png",
-            }}
-          />
-          <Text style={[styles.text, { marginTop: 25 }]}> Welcome Back! {user?.isAmbassador ? <Text>(Ambassador)</Text>: <></>}</Text>
-        </View>
         <View style={styles.video}>
           <Carousal />
         </View>
-        <View
+        <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={["#3E189B", "#E100C1"]}
+      // style={styles.gradient}
           style={{
             width: "100%",
             height: 80,
@@ -93,7 +85,7 @@ const HomeScreen = () => {
             <Text style={styles.textSmall}>Minutes:</Text>
             <Text style={styles.textBold}>{minutes}</Text>
           </View>
-        </View>
+        </LinearGradient>
         <View style={{ alignItems: "center", marginTop: 20 }}>
           <Text style={styles.text}>What do we offer</Text>
           <View

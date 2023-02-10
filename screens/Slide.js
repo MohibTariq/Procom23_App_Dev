@@ -16,14 +16,14 @@ const DATA = [
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "Procom Blah blah!",
     subtitle: "Some more blah blah",
-    image: Image.resolveAssetSource(require("../images/23.png")).uri,
+    image: Image.resolveAssetSource(require("../images/slide-1.jpeg")).uri,
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "Procom Blah blah Screen 2",
     subtitle: "Some more blah blah",
 
-    image: Image.resolveAssetSource(require("../images/23.png")).uri,
+    image: Image.resolveAssetSource(require("../images/slide-2.jpeg")).uri,
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",

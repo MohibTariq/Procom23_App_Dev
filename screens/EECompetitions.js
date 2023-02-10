@@ -40,10 +40,13 @@ const Competiton = ({comp, navigation}) => {
 
 const GamingCompetitions = ({navigation}) => {
   const [comps, getComps] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(()=>{
     async function fetchData(){
+      setLoading(true);
       let data = await getCompetitions("Electrical Engineeri");
       getComps(data)
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -62,6 +65,7 @@ const GamingCompetitions = ({navigation}) => {
           }}
           >
             {
+            loading ? <ActivityIndicator size="small" color="#ffffff" style={{marginRight: 10}} /> :
             comps.length ? 
             comps.map((comp, key)=>{
               return(

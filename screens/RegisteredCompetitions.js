@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  ActivityIndicator
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -57,13 +58,16 @@ function Item({ item }) {
 
 const RegisteredCompetitions = ({navigation}) => {
   const [comps, setComps] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     async function fetchData(){
+      setLoading(true);
       let result = await AsyncStorage.getItem("current");
       let user = JSON.parse(result);
       let response = await getRegisteredCompeitions(user.userid);
       setComps(response);
+      setLoading(false);
     }
     fetchData();
   }, [])
@@ -82,6 +86,8 @@ const RegisteredCompetitions = ({navigation}) => {
           }}
         >
           {
+            loading ? 
+            <ActivityIndicator size="small" color="#ffffff" style={{marginRight: 10}} /> :
             comps.length ? 
             <FlatList
             data={comps}

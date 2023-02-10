@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, ActivityIndicator, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 function ButtonGradient(props) {
   return (
@@ -8,9 +8,14 @@ function ButtonGradient(props) {
       colors={["#3E189B", "#E100C1"]}
       style={styles.gradient}
     >
+      <View style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+      {
+        props.loading ? <ActivityIndicator size="small" color="#ffffff" style={{marginRight: 10}} /> : <></>
+      }
       <Text style={styles.loginText} onPress={props.onclick}>
         {props.text}
       </Text>
+      </View>
     </LinearGradient>
   );
 }

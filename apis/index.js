@@ -7,7 +7,6 @@ export async function login(data){
     if(response.data.code != 200){
         throw new Error("Invalid credentials!");
     }else{
-        console.log(response.data);
         return response.data.data
     }
 }
@@ -26,7 +25,6 @@ export async function getCompetitions(type){
     if(response.data.code != 200){
         return [];
     }else{
-        console.log(response.data.data)
         return response.data.data;
     }
 }

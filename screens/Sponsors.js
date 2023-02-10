@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TextInput,
+  Image,
   TouchableOpacity,
   ScrollView,
   FlatList,
@@ -12,15 +13,25 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import GeneralCompetitions from "./GeneralCompetitions";
-
 const onPress = () => {
   console.log("Button Pressed");
 };
 function Item({ item, patient }) {
   return (
     <View style={styles.card}>
-      <View style={{ width: "100%" }}>
-        <Text style={styles.text}>Acha</Text>
+      <View
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image
+          resizeMode="stretch"
+          source={item.image}
+          style={styles.imageContainer}
+        />
+        <Text style={styles.text}>{item.name}</Text>
       </View>
     </View>
   );
@@ -28,7 +39,14 @@ function Item({ item, patient }) {
 
 const Sponsors = () => {
   const navigation = useNavigation();
-  let Competitions = [1, 2];
+  let Competitions = [
+    { name: "ByteCorp", image: require("../images/bytecorp.png") },
+    { name: "Folio3", image: require("../images/folio3.png") },
+    { name: "Astera", image: require("../images/astera.png") },
+    { name: "Shispare", image: require("../images/shispare.png") },
+    { name: "Softec", image: require("../images/softec.png") },
+    { name: "Wavetec", image: require("../images/wavetec.png") },
+  ];
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -59,12 +77,19 @@ const styles = StyleSheet.create({
   },
   card: {
     minWidth: "90%",
-    backgroundColor: "#370140",
+    backgroundColor: "#FFF", //
     alignSelf: "center",
     padding: 25,
     borderRadius: 10,
     marginTop: 30,
     alignItems: "center",
+  },
+  imageContainer: {
+    width: 200,
+    height: 120,
+    // marginLeft: 20,
+    alignSelf: "center",
+    marginBottom: 10,
   },
   textBar: {
     backgroundColor: "white",
@@ -82,7 +107,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: "white",
+    color: "#370140",
     textAlign: "center",
   },
   smallText: {
