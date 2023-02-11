@@ -45,6 +45,8 @@ function Developer(props) {
           <Card
             name={"Ahmed Naeem"}
             title={"Developer"}
+            image={require("../images/Ahmed.jpeg")}
+
             //   image={require("./assets/user.jpg")}
           />
           <Card
