@@ -88,9 +88,9 @@ export async function make_payment(name, email, contact, amount){
             {
             "OrderNumber": `PayPro-${makeid()}`,
             "OrderAmount": "50",
-            "OrderDueDate": date.toLocaleDateString(),
+            "OrderDueDate": "07/03/2023",
             "OrderType": "Service",
-            "IssueDate": date.toLocaleDateString(),
+            "IssueDate": `${String(date.getDate())}/${String(date.getMonth() + 1)}/${String(date.getFullYear())}`,
             "OrderExpireAfterSeconds": "0",
             "CustomerName": name,
             "CustomerMobile": contact,

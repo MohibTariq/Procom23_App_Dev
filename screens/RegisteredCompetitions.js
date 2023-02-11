@@ -4,25 +4,22 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
   FlatList,
   ActivityIndicator
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
-import GeneralCompetitions from "./GeneralCompetitions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getRegisteredCompeitions } from "../apis";
+import { LinearGradient } from "expo-linear-gradient";
 
 
-const onPress = () => {
-  console.log("Button Pressed");
-};
 function Item({ item }) {
   return (
-    <View style={styles.card}>
+    <LinearGradient
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+    colors={["#3E189B", "#E100C1"]}
+    style={styles.card}
+    >
       <View style={{ width: "100%" }}>
         <Text style={styles.text}>{item.compname}</Text>
         <Text style={styles.smallText}>{item.CompType}</Text>
@@ -51,8 +48,7 @@ function Item({ item }) {
           </Text>
         </View>
       </View>
-      <View></View>
-    </View>
+      </LinearGradient>
   );
 }
 

@@ -18,6 +18,7 @@ function Register({navigation, route}) {
   const [loading, setLoading] = useState(false);
   const [payproId, setPayproId] = useState(null);
   const [user, setUser] = useState({});
+  const [user_id, setUserId] = useState();
 
   useEffect(()=>{
     AsyncStorage.getItem("current").then((result)=>{
@@ -92,6 +93,7 @@ function Register({navigation, route}) {
     setLoading(true);
     let response = await getUserByEmail(field);
     if(response){
+      setUserId(response.userid);
       try{
         let res = await make_payment(response.fullname, response.email, response.contact, comp.LateBird);
         Linking.openURL(res[0]); 
@@ -113,7 +115,7 @@ function Register({navigation, route}) {
     try{
       let response = await checkStatus(payproId);
       if(response){
-        let res = await registerTeam(response.userid, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
+        let res = await registerTeam(user_id, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
         if(res){
           alert(res);
           setLoading(false);
