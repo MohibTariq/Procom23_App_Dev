@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 
-const Explore = ({navigation}) => {
+const Explore = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -18,71 +18,71 @@ const Explore = ({navigation}) => {
         style={styles.image}
       >
         <ScrollView style={{ marginTop: 20 }}>
-        <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={["#3E189B", "#E100C1"]}
-      style={styles.button}
-      >
-          <TouchableOpacity
-            onPress={() => navigation.navigate("General Competitions")}
-            style={styles.gradient}
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#3E189B", "#E100C1"]}
+            style={styles.button}
           >
-            <Text style={styles.text}>General Competitions</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("General Competitions")}
+              style={styles.gradient}
+            >
+              <Text style={styles.text}>General Competitions</Text>
+            </TouchableOpacity>
           </LinearGradient>
 
           <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={["#3E189B", "#E100C1"]}
-      style={styles.button}
-      >
-          <TouchableOpacity
-            style={styles.gradient}
-            onPress={() => navigation.navigate("Gaming Competitions")}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#3E189B", "#E100C1"]}
+            style={styles.button}
           >
-            <Text style={styles.text}>Gaming Competitions</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.gradient}
+              onPress={() => navigation.navigate("Gaming Competitions")}
+            >
+              <Text style={styles.text}>Gaming Competitions</Text>
+            </TouchableOpacity>
           </LinearGradient>
 
           <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={["#3E189B", "#E100C1"]}
-      style={styles.button}
-      >
-          <TouchableOpacity
-            style={styles.gradient}
-            onPress={() => navigation.navigate("CS Competitions")}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#3E189B", "#E100C1"]}
+            style={styles.button}
           >
-            <Text style={styles.text}>CS Competitions</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.gradient}
+              onPress={() => navigation.navigate("CS Competitions")}
+            >
+              <Text style={styles.text}>CS Competitions</Text>
+            </TouchableOpacity>
           </LinearGradient>
 
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={["#3E189B", "#E100C1"]}
-      style={styles.buttonRow}
-      >
-            <TouchableOpacity
-              style={styles.buttonRowGrad}
-              onPress={() => navigation.navigate("EE Competitions")}
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#3E189B", "#E100C1"]}
+              style={styles.buttonRow}
             >
-              <Text style={styles.text}>EE Competitions</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonRowGrad}
+                onPress={() => navigation.navigate("EE Competitions")}
+              >
+                <Text style={styles.text}>EE Competitions</Text>
+              </TouchableOpacity>
             </LinearGradient>
             <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-      colors={["#3E189B", "#E100C1"]}
-      style={styles.buttonRow}
-      >
-            <TouchableOpacity style={styles.buttonRowGrad}>
-              <Text style={styles.text}>Starup Showdown</Text>
-            </TouchableOpacity>
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#3E189B", "#E100C1"]}
+              style={styles.buttonRow}
+            >
+              <TouchableOpacity style={styles.buttonRowGrad}>
+                <Text style={styles.text}>Startup Showdown</Text>
+              </TouchableOpacity>
             </LinearGradient>
           </View>
         </ScrollView>

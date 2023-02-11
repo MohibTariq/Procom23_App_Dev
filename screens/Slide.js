@@ -14,24 +14,16 @@ import {
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Procom Blah blah!",
-    subtitle: "Some more blah blah",
+    title: "Registerations are live!",
+    subtitle: "Hurry up!",
     image: Image.resolveAssetSource(require("../images/slide-1.jpeg")).uri,
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Procom Blah blah Screen 2",
-    subtitle: "Some more blah blah",
+    title: "The Startup Showdown!",
+    subtitle: "Ask for funds, resources and guidance",
 
     image: Image.resolveAssetSource(require("../images/slide-2.jpeg")).uri,
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Procom Blah blah Screen 3",
-    subtitle: "Some more blah blah",
-
-    // image: require("../images/Background-Img.png"),
-    image: Image.resolveAssetSource(require("../images/23.png")).uri,
   },
 ];
 
@@ -39,7 +31,7 @@ const DATA = [
 const defaults = {
   height: "100%",
   width: Dimensions.get("window").width,
-  delay: 5000,
+  delay: 10000,
 };
 
 // Default Image Item
@@ -153,12 +145,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     color: "#fff",
     fontWeight: "bold",
   },
   subtitle: {
-    fontSize: 10,
+    fontSize: 14,
     color: "#fff",
   },
   image: {
