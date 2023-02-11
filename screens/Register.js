@@ -95,7 +95,7 @@ function Register({navigation, route}) {
     if(response){
       setUserId(response.userid);
       try{
-        let res = await make_payment(response.fullname, response.email, response.contact, comp.LateBird);
+        let res = await make_payment(response.fullname, response.email, response.contact, comp.EarlyBird < 800 ? comp.EarlyBird*no : comp.EarlyBird);
         Linking.openURL(res[0]); 
         setPayproId(res[1]);
         setLoading(false);

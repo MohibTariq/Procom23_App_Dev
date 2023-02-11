@@ -45,7 +45,7 @@ function Competition({ route, navigation }) {
           <Text style={styles.text_heading}>Description</Text>
           <Text style={styles.text_display1}>{comp.Description}</Text>
           <Text style={styles.text_heading}>Fee</Text>
-          <Text style={styles.text_display1}>{"Rs. " + comp.EarlyBird}</Text>
+          <Text style={styles.text_display1}>{"Rs. " + comp.EarlyBird}{comp.EarlyBird < 800 ? <Text>{" / player"}</Text> : <Text>{" / team"}</Text>}</Text>
           <Text style={styles.text_heading}>Participants Limit</Text>
           <Text style={styles.text_display1}>
             <Text>Min: <Text>{comp.minparticipants}</Text></Text>
