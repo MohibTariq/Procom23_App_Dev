@@ -10,22 +10,27 @@ import {
 import { useEffect, useState } from "react";
 import ButtonGradient from "./ButtonGradient";
 import Input from "./Input";
-import { getUserByEmail, registerTeam, make_payment, checkStatus } from "../apis";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  getUserByEmail,
+  registerTeam,
+  make_payment,
+  checkStatus,
+} from "../apis";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function Register({navigation, route}) {
-  const {comp} = route.params;
+function Register({ navigation, route }) {
+  const { comp } = route.params;
   const [loading, setLoading] = useState(false);
   const [payproId, setPayproId] = useState(null);
   const [user, setUser] = useState({});
   const [user_id, setUserId] = useState();
 
-  useEffect(()=>{
-    AsyncStorage.getItem("current").then((result)=>{
+  useEffect(() => {
+    AsyncStorage.getItem("current").then((result) => {
       let user_ = JSON.parse(result);
       setUser(user_);
     });
-  }, [])
+  }, []);
 
   // const addToCart = () =>
   //   Alert.alert("Added to Cart", "My Alert Msg", [
@@ -41,7 +46,7 @@ function Register({navigation, route}) {
   //     { text: "OK", onPress: () => console.log("OK Pressed") },
   //   ]);
 
-  async function submit_ambassador(){
+  async function submit_ambassador() {
     if (field === "") {
       alert("Enter Lead's Email");
       return;
@@ -55,25 +60,31 @@ function Register({navigation, route}) {
       return;
     }
 
-    try{
+    try {
       let response = await getUserByEmail(field);
       setLoading(true);
-      let res = await registerTeam(response.userid, teamName, no, user.userid, comp.compid, comp.EarlyBird);
-      if(res){
+      let res = await registerTeam(
+        response.userid,
+        teamName,
+        no,
+        user.userid,
+        comp.compid,
+        comp.EarlyBird
+      );
+      if (res) {
         alert(res);
         setLoading(false);
-      }else{
-        alert("There was an error in registering!")
+      } else {
+        alert("There was an error in registering!");
         setLoading(false);
       }
       setfield("");
       setteamname("");
-      setno("");      
-    }catch(err){
+      setno("");
+    } catch (err) {
       setLoading(false);
       alert("There was an error in registering!");
     }
-
   }
 
   async function submit() {
@@ -92,48 +103,61 @@ function Register({navigation, route}) {
 
     setLoading(true);
     let response = await getUserByEmail(field);
-    if(response){
+    if (response) {
       setUserId(response.userid);
-      try{
-        let res = await make_payment(response.fullname, response.email, response.contact, comp.EarlyBird < 800 ? comp.EarlyBird*no : comp.EarlyBird);
-        Linking.openURL(res[0]); 
+      try {
+        let res = await make_payment(
+          response.fullname,
+          response.email,
+          response.contact,
+          comp.EarlyBird < 800 ? comp.EarlyBird * no : comp.EarlyBird
+        );
+        Linking.openURL(res[0]);
         setPayproId(res[1]);
         setLoading(false);
-      }catch(err){
+      } catch (err) {
         setLoading(false);
         alert(err.message);
       }
-    }else{
+    } else {
       alert("There was an error in registration. Pls try again!");
       setLoading(false);
     }
   }
 
-  async function proceed(){
-    let ambassador_id = user.isAmbassador ? user.userid : null
+  async function proceed() {
+    let ambassador_id = user.isAmbassador ? user.userid : null;
     setLoading(true);
-    try{
+    try {
       let response = await checkStatus(payproId);
-      if(response){
-        let res = await registerTeam(user_id, teamName, no, ambassador_id, comp.compid, comp.EarlyBird);
-        if(res){
+      if (response) {
+        let res = await registerTeam(
+          user_id,
+          teamName,
+          no,
+          ambassador_id,
+          comp.compid,
+          comp.EarlyBird
+        );
+        if (res) {
           alert(res);
           setLoading(false);
-        }else{
-          alert("There was an error in registering!")
+        } else {
+          alert("There was an error in registering!");
           setLoading(false);
         }
         setfield("");
         setteamname("");
         setno("");
         setPayproId(null);
-      }else{
-        alert("Please complete the payment process!")
+      } else {
+        alert("Please complete the registration again!");
+        navigation.goBack();
       }
-    }catch(err){
+    } catch (err) {
       setLoading(false);
       setPayproId(null);
-      alert(err.message)
+      alert(err.message);
     }
   }
 
@@ -191,37 +215,48 @@ function Register({navigation, route}) {
             placeholder="Team Name"
             secure={false}
           />
-           <Input
-              style={styles.TextInput}
-              keyboardType="numeric"
-              placeholder="Number of Participants"
-              setvar={setno}
-              value={no}
-            />
-    
+          <Input
+            style={styles.TextInput}
+            keyboardType="numeric"
+            placeholder="Number of Participants"
+            setvar={setno}
+            value={no}
+          />
+
           <TouchableOpacity
             style={{ width: "100%" }}
             onPress={async () => {
-              user.isAmbassador ? submit_ambassador() :
-              payproId ? proceed() : submit();
+              user.isAmbassador
+                ? submit_ambassador()
+                : payproId
+                ? proceed()
+                : submit();
             }}
           >
-            <ButtonGradient text={user.isAmbassador ? "Register" : payproId ? "Register" : "Proceed to checkout"} loading={loading} />
+            <ButtonGradient
+              text={
+                user.isAmbassador
+                  ? "Register"
+                  : payproId
+                  ? "Register"
+                  : "Proceed to checkout"
+              }
+              loading={loading}
+            />
           </TouchableOpacity>
 
-          {
-
-            user.isAmbassador ? 
+          {user.isAmbassador ? (
             <TouchableOpacity
-            style={{ width: "100%" }}
-            onPress={async () => {
-              navigation.navigate("Sign up lead")
-            }}
-          >
-            <ButtonGradient text={"Sign Up Team lead"} />
-          </TouchableOpacity>
-          : <></>
-          }
+              style={{ width: "100%" }}
+              onPress={async () => {
+                navigation.navigate("Sign up lead");
+              }}
+            >
+              <ButtonGradient text={"Sign Up Team lead"} />
+            </TouchableOpacity>
+          ) : (
+            <></>
+          )}
         </View>
       </ScrollView>
     </ImageBackground>
