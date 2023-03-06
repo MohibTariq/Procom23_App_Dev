@@ -22,7 +22,7 @@ export default function Main({ navigation }) {
             );
           } else if (route.name === "Cart") {
             iconName = focused ? "ios-person" : "ios-person-outline";
-            return <Ionicons name={iconName} size={25} color={color} />;
+            return <Ionicons name={iconName} size={20} color={color} />;
           } else if (route.name === "Explore") {
             iconName = focused ? "ios-add-circle" : "ios-add-circle-outline";
             return <Ionicons name={iconName} size={40} color={color} />;

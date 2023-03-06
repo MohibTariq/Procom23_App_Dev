@@ -19,6 +19,7 @@ const HomeScreen = () => {
   const [days, setDays] = useState();
   const [hours, setHours] = useState();
   const [minutes, setMinues] = useState();
+  const [show, setShow] = useState(true);
   useEffect(() => {
     AsyncStorage.getItem("user").then((result) => {
       setUser(JSON.parse(result));
@@ -27,6 +28,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     setInterval(() => {
+      setShow(false);
       let date_now = Date.now();
 
       // date and time of procom
@@ -42,8 +44,12 @@ const HomeScreen = () => {
       delta -= hours * 3600;
       var minutes = Math.floor(delta / 60) % 60;
       setMinues(minutes);
+      setTimeout(()=>{
+        setShow(true); 
+      }, 200)
     }, 1000);
   }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -73,15 +79,17 @@ const HomeScreen = () => {
           >
             <Text style={styles.text}>Procom' 23: </Text>
             <View style={styles.durationBox}>
-              <Text style={styles.textSmall}>Days:</Text>
+              <Text style={styles.textSmall}>Days</Text>
               <Text style={styles.textBold}>{days}</Text>
             </View>
+            <Text style={{color: "white", fontWeight: "bold", fontSize: 18, height: show ? 25: 0}}>:</Text> 
             <View style={styles.durationBox}>
-              <Text style={styles.textSmall}>Hours:</Text>
+              <Text style={styles.textSmall}>Hours</Text>
               <Text style={styles.textBold}>{hours}</Text>
             </View>
+            <Text style={{color: "white", fontWeight: "bold", fontSize: 18, height: show ? 25: 0}}>:</Text> 
             <View style={styles.durationBox}>
-              <Text style={styles.textSmall}>Minutes:</Text>
+              <Text style={styles.textSmall}>Minutes</Text>
               <Text style={styles.textBold}>{minutes}</Text>
             </View>
           </LinearGradient>

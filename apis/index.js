@@ -1,10 +1,9 @@
 import axios from "axios";
 import ROUTES from "../routes";
 
-const backend_url = "http://ec2-3-113-8-105.ap-northeast-1.compute.amazonaws.com/";
+const backend_url = "http://ec2-43-207-165-198.ap-northeast-1.compute.amazonaws.com/";
 const paypar_auth = " https://api.paypro.com.pk/v2/ppro/auth";
 const paypro_create_order = "https://api.paypro.com.pk/v2/ppro/co";
-const checkstatus = "https://api.paypro.com.pk/v2/ppro/ggos"
 
 const clientid = "WpjGlWwJ9ASWUkK";
 const clientsecret = "cm3gmbj7kQU3kgo";
